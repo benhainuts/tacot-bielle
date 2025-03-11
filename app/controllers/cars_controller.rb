@@ -14,7 +14,9 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
     if @car.save
-      redirect_to cars_path
+
+      # create_maintenance(@car)
+      redirect_to car_item_plan_path(@car)
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,6 +45,21 @@ end
 
 def set_car
   @car = Car.find(params[:id])
+end
+
+def create_maintenance(car)
+
+  client = OpenAI::Client.new
+  chatgpt_response = client.chat(parameters: {
+    model: "gpt-4o-mini",
+    messages: [{ role: "user", content:
+  "une voiture marque #{car.make} Modele #{car.model} #{car.engine} #{car.fuel} #{car.horsepower} de #{car.date_of_first_purchase} avec #{car.mileage} km et climatisation et faisant #{car.estimated_mileage_per_year}. liste moi dans un array de hash chaque entretien a faire selon le constructeur avec son nom dans name: sa périodicité en km dans to_do_every_x_km: et sa periodicite en année dans to_do_every_x_years. ne renvoie que cet array"}]
+  })
+  content = chatgpt_response["choices"][0]["message"]["content"]
+
+  content.each do |ligne|
+    PlanItem.create(car: car, name: ligne[:name], to_do_every_x_km: ligne[:to_do_every_x_km], to_do_every_x_years: ligne[:to_do_every_x_years])
+  end
 end
 
 end
