@@ -6,7 +6,20 @@
       <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
       <%= f.input :cost, label: "Montant de la facture", placeholder: "Entrez le montant" %>
       <%= f.input :mileage, label: "Kilométrage au passage", placeholder: "Entrez le kilométrage" %>
+      <div>Opérations d'entretiens réalisées</div>
+      <ul>
+      <% @car.plan_items.each do |item|%>
+        <li>
+          <input type="checkbox" id=<%= item %> name="item[<%= item %>]"><%= item.name %>
+          price : <input type="number" name="itemprice[<%= item %>]" >
+        </li>
+      <%end%>
+      </ul>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
+
+  <div>Opérations d'entretiens réalisées</div>
+
+
 
 <%= link_to "Annuler", cars_path %>
