@@ -13,11 +13,10 @@ class PlanItemsController < ApplicationController
 
   def create
     @plan_item = @car.plan_items.new(plan_item_params)
-    @plan_item.user = current_user
     if @plan_item.save
       redirect_to car_path(@car), notice: "Plan d'entretien mis à jour"
     else
-      render car_path(@car), status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

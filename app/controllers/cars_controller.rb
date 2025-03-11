@@ -21,7 +21,7 @@ class CarsController < ApplicationController
   end
 
   def show
-    # @plan_item = @car.plan_items.new
+    @plan_items = @car.plan_items
   end
 
   def edit
