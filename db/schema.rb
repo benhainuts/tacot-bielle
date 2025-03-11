@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.1].define(version: 2025_03_10_164140) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_11_094645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +26,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_164140) do
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
+  create_table "item_by_stops", force: :cascade do |t|
+    t.bigint "stop_id", null: false
+    t.bigint "plan_item_id", null: false
+    t.float "item_cost"
+    t.integer "deadline_km_for_this_item"
+    t.integer "calculated_next_km_milestone"
+    t.date "deadline_date_for_this_item"
+    t.date "calculated_next_date_milestone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_item_id"], name: "index_item_by_stops_on_plan_item_id"
+    t.index ["stop_id"], name: "index_item_by_stops_on_stop_id"
+  end
 
   create_table "plan_items", force: :cascade do |t|
     t.string "name"
@@ -62,6 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_164140) do
   end
 
   add_foreign_key "cars", "users"
+  add_foreign_key "item_by_stops", "plan_items"
+  add_foreign_key "item_by_stops", "stops"
   add_foreign_key "plan_items", "cars"
   add_foreign_key "stops", "cars"
 end
