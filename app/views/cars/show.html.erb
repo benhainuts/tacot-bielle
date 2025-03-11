@@ -30,7 +30,7 @@ Kilomètrage à l'année - <%= @car.estimated_mileage_per_year %>
 
 </div>
 <div>
-<%= link_to "ajouter un passage au garage", ""%>
+<%= link_to "ajouter un passage au garage", new_car_stop_path(@car)%>
 </div>
 <div>
 <%= link_to "Retour à ma liste de voitures", cars_path%>

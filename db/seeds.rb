@@ -9,7 +9,7 @@
 #   end
 ItemByStop.destroy_all
 Stop.destroy_all
-PlanItem.destroy.all
+# PlanItem.destroy.all
 Car.destroy_all
 User.destroy_all
 
