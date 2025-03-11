@@ -1,0 +1,37 @@
+<h1>this is car show</h1>
+
+<div>
+Marque - <%= @car.make %>
+</div>
+<div>
+Modèle - <%= @car.model %>
+</div>
+<div>
+Kilomètrage - <%= @car.mileage %> - <%= link_to "mettre à jour le kilomètrage", edit_car_path(@car) %>
+</div>
+<div>
+Date de première mise en circulation - <%= @car.date_of_first_purchase %>
+</div>
+<div>
+Kilomètrage à l'année - <%= @car.estimated_mileage_per_year %>
+</div>
+
+<h2>Plan d'entretien</h2>
+<div>
+<ul>
+  <% @plan_items.each do |plan_item|%>
+    <li>
+      <%= plan_item.name %>, <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item)%>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "ajouter un item au plan d'entretien", new_car_plan_item_path(@car)%>
+</div>
+
+</div>
+<div>
+<%= link_to "ajouter un passage au garage", ""%>
+</div>
+<div>
+<%= link_to "Retour à ma liste de voitures", cars_path%>
+</div>
