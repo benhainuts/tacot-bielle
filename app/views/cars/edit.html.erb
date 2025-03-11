@@ -1,1 +1,10 @@
 <h1>this is car edit</h1>
+
+ <%= simple_form_for @car do |f| %>
+      <%= f.input :mileage, label: "Kilomètrage", placeholder: "Entrez le kilométrage du véhicule"%>
+
+
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+
+<%= link_to "annuler", car_path(@car)%>
