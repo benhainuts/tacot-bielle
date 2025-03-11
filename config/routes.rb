@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :cars, only: [:index, :show, :new, :create, :edit, :update] do
     resources :plan_items
-    resources :stops, only: [:index, :show, :new, :create, :edit, :update]
+    resources :stops, only: [:index, :show, :new, :create, :edit, :update] do
+      resources :item_by_stops
+    end
   end
 end
