@@ -1,0 +1,17 @@
+{
+  "background_color": "yellow",
+  "description": "Tacot Bielle is an app for used car owners that want to take care of their vehicles. An application that retrieves the maintenance plan for your car and organize it in your agenda.",
+  "display": "fullscreen",
+  "name": "Tacot Bielle",
+  "icons": [
+    <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
+    <% files.each_with_index do |file, index| %>
+      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      {
+        "src": "<%= image_path "icons/#{file}" %>",
+        "sizes": "<%= match && match[:size] %>",
+        "type": "image/png"
+      }<%= "," unless (files.size - 1) == index %>
+    <% end %>
+  ]
+}
