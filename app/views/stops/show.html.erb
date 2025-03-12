@@ -1,0 +1,17 @@
+<h1>Stops#show</h1>
+<p>Find me in app/views/stops/show.html.erb</p>
+
+<h1>this is garage-car show</h1>
+
+<div>
+Date du passage - <%= @stop.date %>
+</div>
+<div>
+Garage - <%= @stop.garage %>
+</div>
+<div>
+Prix - <%= @stop.cost %> €
+</div>
+<div>
+Kilomètrage au passage - <%= @car.mileage %> - <%= link_to "mettre à jour le kilomètrage", edit_car_path(@car) %>
+</div>
