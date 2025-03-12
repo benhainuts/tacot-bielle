@@ -10,7 +10,7 @@
 Marque - <%= @car.make %>
 </div>
 <div>
-Modèle - <%= @car.model %>
+Modèle - <%= @car.model %> - <%= @car.engine%> <%= @car.fuel%> <%= @car.horsepower%> chevaux.
 </div>
 <div>
 Kilomètrage - <%= @car.mileage %> - <%= link_to "mettre à jour le kilomètrage", edit_car_path(@car) %>
@@ -22,22 +22,32 @@ Date de première mise en circulation - <%= @car.date_of_first_purchase %>
 Kilomètrage à l'année - <%= @car.estimated_mileage_per_year %>
 </div>
 
-<h2>Plan d'entretien</h2>
 <div>
-<ul>
-  <% @plan_items.each do |plan_item|%>
-    <li>
-      <%= plan_item.name %>, <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item)%>
-    </li>
-  <% end %>
-</ul>
-<%= link_to "ajouter un item au plan d'entretien", new_car_plan_item_path(@car)%>
+à la création : entretien suivi jusque - <%= @car.last_follow_up_date %> - <%= @car.last_follow_up_km %>
 </div>
 
+<div>
+  <h2>Plan d'entretien</h2>
+  <ul>
+    <% @plan_items.each do |plan_item|%>
+      <li>
+        <%= plan_item.name %>, prochaine échéance:<%=plan_item.next_km_milestone%>km, prochaine échéance:<%=plan_item.next_date_milestone%>,<%= link_to "modifier", edit_car_plan_item_path(@car, plan_item)%>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "ajouter un item au plan d'entretien", new_car_plan_item_path(@car)%>
 </div>
 <div>
-<%= link_to "ajouter un passage au garage", new_car_stop_path(@car)%>
+  <h2>Passages au garage</h2>
+  <ul>
+    <% @car.stops.each do |stop|%>
+      <li>
+        <%= stop.date %>, <%= stop.mileage %>km garage : <%= stop.garage %> cout <%= stop.cost %>€ - <%= link_to "ouvrir", car_stop_path(@car, stop)%>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "ajouter un passage au garage", new_car_stop_path(@car)%>
 </div>
 <div>
-<%= link_to "Retour à ma liste de voitures", cars_path%>
+  <%= link_to "Retour à ma liste de voitures", cars_path%>
 </div>

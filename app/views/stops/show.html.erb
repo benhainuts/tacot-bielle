@@ -13,5 +13,22 @@ Garage - <%= @stop.garage %>
 Prix - <%= @stop.cost %> €
 </div>
 <div>
-Kilomètrage au passage - <%= @car.mileage %> - <%= link_to "mettre à jour le kilomètrage", edit_car_path(@car) %>
+Kilomètrage au passage - <%= @stop.mileage %>
+</div>
+
+<h2>Items couverts</h2>
+<ul>
+  <%@stop.item_by_stops.each do |item|%>
+    <li><div>stop id : <%=item.stop_id%> - plan item : <%=item.plan_item_id%> - <%=PlanItem.find(item.plan_item_id).name%> - price : <%=item.item_cost%></div>
+    <div>
+     - original km deadline : <%=item.deadline_km_for_this_item%> - next km : <%=item.calculated_next_km_milestone%>
+    </div>
+    <div>
+     - original date deadline : <%=item.deadline_date_for_this_item%> - next date : <%=item.calculated_next_date_milestone%>
+    </div>
+    </li>
+  <%end%>
+</ul>
+<div>
+<%=link_to "retour à la voiture", car_path(@car)%>
 </div>

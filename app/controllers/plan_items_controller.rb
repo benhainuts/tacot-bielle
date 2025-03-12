@@ -37,6 +37,18 @@ class PlanItemsController < ApplicationController
   def destroy
   end
 
+  # def next_km_milestone
+  #   last_stop_item = ItemByStop.where(plan_item_id: @plan_item.id).last
+
+  #   if last_stop_item.nil?
+  #     deadline_km_for_this_item = @plan_item.to_do_every_x_km*(1+@car.last_follow_up_km.div(@plan_item.to_do_every_x_km))
+  #   else
+  #     last_stop = Stop.find(last_stop_item.stop_id)
+  #     deadline_km_for_this_item = @plan_item.to_do_every_x_km + @car.mileage
+  #   end
+  #   return deadline_km_for_this_item
+  # end
+
 private
 
 def set_car
