@@ -7,6 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+<<<<<<< HEAD
 ItemByStop.destroy_all
 Stop.destroy_all
 # PlanItem.destroy.all
@@ -20,3 +21,5 @@ cedric = User.create(email:"cedric@test.com", password:"cedric1905")
 
 toyota = Car.create(make:"Toyota", model:"Yaris", date_of_first_purchase:"2014-08-04", mileage:"114000", estimated_mileage_per_year:"15000", user: benoit)
 citroen = Car.create(make:"Citroen", model:"C4", date_of_first_purchase:"2016-04-14", mileage:"26000", estimated_mileage_per_year:"15000", user: benoit)
+=======
+>>>>>>> master
