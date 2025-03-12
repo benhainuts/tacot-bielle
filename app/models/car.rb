@@ -2,7 +2,7 @@ class Car < ApplicationRecord
   belongs_to :user
   has_many :stops
   has_many :plan_items
-  has_many :items_by_stops, through: :stops
+  has_many :item_by_stops, through: :stops
 
   # has_one_attached :photo
 
