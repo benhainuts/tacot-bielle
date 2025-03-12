@@ -16,7 +16,7 @@ class CarsController < ApplicationController
     if @car.save
 
       # create_maintenance(@car)
-      redirect_to car_plan_item_path(@car)
+      redirect_to car_plan_items_path(@car)
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class CarsController < ApplicationController
 private
 
 def car_params
-  params.require(:car).permit(:make, :model, :mileage, :date_of_first_purchase, :estimated_mileage_per_year, :engine, :fuel, :horsepower, :maintenance_status)
+  params.require(:car).permit(:make, :model, :mileage, :date_of_first_purchase, :estimated_mileage_per_year, :engine, :fuel, :horsepower, :maintenance_status, :last_follow_up_km, :last_follow_up_date)
 end
 
 def set_car

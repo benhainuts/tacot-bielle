@@ -17,4 +17,8 @@ class Car < ApplicationRecord
   def full_name
     "#{make} #{model}"
   end
+
+  def age_in_days_on(date)
+    (Date.parse(date.to_s) - Date.parse(date_of_first_purchase.to_s)).to_i
+  end
 end
