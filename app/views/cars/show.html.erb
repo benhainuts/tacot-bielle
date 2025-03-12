@@ -31,7 +31,7 @@ Kilomètrage à l'année - <%= @car.estimated_mileage_per_year %>
   <ul>
     <% @plan_items.each do |plan_item|%>
       <li>
-        <%= plan_item.name %>, prochaine échéance:<%=plan_item.next_km_milestone%>km, prochaine échéance:<%=plan_item.next_date_milestone%>,<%= link_to "modifier", edit_car_plan_item_path(@car, plan_item)%>
+        <%= plan_item.name %>, prochaine échéance:<%=plan_item.next_km_milestone%>km, prochaine échéance:<%=plan_item.next_date_milestone%>, <%= link_to "détails", car_plan_item_path(@car, plan_item)%>, <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item)%>
       </li>
     <% end %>
   </ul>

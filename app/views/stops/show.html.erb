@@ -29,6 +29,10 @@ Kilomètrage au passage - <%= @stop.mileage %>
     </li>
   <%end%>
 </ul>
+
+<div>
+<%=link_to "editer", edit_car_stop_path(@car,@stop)%>
+</div>
 <div>
 <%=link_to "retour à la voiture", car_path(@car)%>
 </div>

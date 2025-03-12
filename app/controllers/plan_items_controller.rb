@@ -21,6 +21,7 @@ class PlanItemsController < ApplicationController
   end
 
   def show
+    @item_by_stops = ItemByStop.where(plan_item_id: @plan_item.id)
   end
 
   def edit
