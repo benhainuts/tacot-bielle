@@ -3,7 +3,15 @@
 <ul>
   <% @cars.each do |car| %>
     <li>
+
       <%=car.make%> - <%=car.model%> - <%=car.mileage%> <%=link_to "fiche voiture", car_path(car)%>
+
+      <% if car.photo.attached? %>
+        <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill %>
+        <% else %>
+        <p>No Image Available</p>
+        <% end %>
+
     </li>
   <% end %>
 </ul>

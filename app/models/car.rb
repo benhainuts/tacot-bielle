@@ -4,7 +4,7 @@ class Car < ApplicationRecord
   has_many :plan_items
   has_many :item_by_stops, through: :stops
 
-  # has_one_attached :photo
+  has_one_attached :photo
 
   validates :model, presence: true, uniqueness: { scope: [:make, :date_of_first_purchase, :user],
    message: "your car is already declared" }

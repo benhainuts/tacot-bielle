@@ -1,5 +1,11 @@
 <h1>this is car show</h1>
 
+ <% if @car.photo.present? %>
+    <%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <p>No photo available</p>
+<% end %>
+
 <div>
 Marque - <%= @car.make %>
 </div>
