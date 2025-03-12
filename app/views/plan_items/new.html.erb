@@ -1,0 +1,11 @@
+<h1> Coucou from plan items new </h1>
+
+ <%= simple_form_for [@car, @plan_item] do |f| %>
+      <%= f.input :name, label: "Nom de l'entretien", placeholder: "Entrez un nom pour l'entretien" %>
+      <%= f.input :to_do_every_x_km, label: "à faire tous les x km", placeholder: "Entrez une fréquence d'entetien en km" %>
+      <%= f.input :to_do_every_x_years, label: "à faire tous les x_ans", placeholder: "Entrez une fréquence d'entetien en années"%>
+
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+
+<%= link_to "Annuler", car_path(@car)%>
