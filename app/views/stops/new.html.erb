@@ -10,8 +10,8 @@
       <ul>
       <% @car.plan_items.each do |item|%>
         <li>
-          <input type="checkbox" id=<%= item %> name="item[<%= item %>]"><%= item.name %>
-          price : <input type="number" name="itemprice[<%= item %>]" >
+          <input type="checkbox" id=<%= item %> name="item[<%= item.id %>]"><%= item.name %>
+          price : <input type="number" name="itemprice[<%= item.id %>]" >
         </li>
       <%end%>
       </ul>

@@ -17,13 +17,12 @@ class StopsController < ApplicationController
   end
 
   def create
-    # raise
+
     @stop = @car.stops.new(stop_params)
     if @stop.save
       params.require(:item).keys.each do |item|
         cost = params.require(:itemprice)[item]
-        i = ItemByStop.new(stop_id: @stop.id, plan_item_id: item, item_cost: cost)
-        raise
+        i = ItemByStop.new(stop_id: @stop.id, plan_item_id: item.to_i, item_cost: cost)
         i.save
       end
       redirect_to car_path(@car), notice: "Passage au garage créé"
