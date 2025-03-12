@@ -15,7 +15,7 @@ class CarsController < ApplicationController
     @car.user = current_user
     if @car.save
 
-      # create_maintenance(@car)
+      create_maintenance(@car)
       redirect_to car_path(@car)
 
     else
@@ -56,11 +56,14 @@ def create_maintenance(car)
   chatgpt_response = client.chat(parameters: {
     model: "gpt-4o-mini",
     messages: [{ role: "user", content:
-  "une voiture marque #{car.make} Modele #{car.model} #{car.engine} #{car.fuel} #{car.horsepower} de #{car.date_of_first_purchase} avec #{car.mileage} km et climatisation et faisant #{car.estimated_mileage_per_year}. liste moi dans un array de hash chaque entretien a faire selon le constructeur avec son nom dans name: sa périodicité en km dans to_do_every_x_km: et sa periodicite en année dans to_do_every_x_years. ne renvoie que cet array"}]
+  "une voiture marque #{car.make} Modele #{car.model} #{car.engine} #{car.fuel} #{car.horsepower} de #{car.date_of_first_purchase} avec #{car.mileage} km et faisant #{car.estimated_mileage_per_year} km par an.  liste moi dans un json chaque entretien a faire, avec au minimum (vidange d'huile moteur / remplacement du filtre à air / remplacement du filtre à carburant / remplacement du filtre d'habitable / remplacement de la courroie de distribution / purge et remplacement du liquide de frein / remplacement du liquide de refroidissement)  selon le constructeur avec son nom dans name: sa périodicité en km dans to_do_every_x_km: et sa periodicite en année dans to_do_every_x_years. ne renvoie que ce json"}]
   })
   content = chatgpt_response["choices"][0]["message"]["content"]
+  g = content.gsub('```','')
+  c= g.gsub("json\n","")
+  h = JSON.parse(c,symbolize_names: true)
 
-  content.each do |ligne|
+  h.each do |ligne|
     PlanItem.create(car: car, name: ligne[:name], to_do_every_x_km: ligne[:to_do_every_x_km], to_do_every_x_years: ligne[:to_do_every_x_years])
   end
 end

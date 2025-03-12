@@ -21,7 +21,7 @@ class StopsController < ApplicationController
     @stop = @car.stops.new(stop_params)
     if @stop.save
       if Car.find(@stop.car_id).mileage < @stop.mileage
-        Car.update(mileage: @stop.mileage)
+        Car.find(@stop.car_id).update(mileage: @stop.mileage)
       end
       params.require(:item).keys.each do |item|
         cost = params.require(:itemprice)[item]
