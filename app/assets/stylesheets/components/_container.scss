@@ -1,0 +1,39 @@
+.container-background {
+  background-color: $primary;
+  border-radius: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  // display: flex;
+  // flex-direction:column;
+  // justify-content: center;
+  max-width: 500px;
+  // margin-left: auto;
+  // margin-right: auto;
+
+}
+
+.container-title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.container-image {
+  max-width: 500px;
+  justify-content: center;
+}
+
+.container-card {
+  background-color: $white;
+  border-radius: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  .h2{
+    position: center;
+    }
+}
