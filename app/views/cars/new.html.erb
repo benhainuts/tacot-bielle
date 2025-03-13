@@ -1,6 +1,26 @@
-<h1>this is new car form</h1>
 
- <%= simple_form_for @car do |f| %>
+<div class="form-newcar">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-4">
+
+
+      <div class="horizontal-new-container">
+      <%= link_to "Annuler", cars_path, class: "btn-link-annuler" %>
+        <h6><strong>Nouveau véhicule</strong></h6>
+       <%= simple_form_for @car do |f| %>
+      <%= f.button :submit, "Enregistrer", class: "btn-link-envoyer", style: "background: none; border: none; color: inherit; cursor: pointer;" %>
+      </div>
+
+
+
+<%# Si possible ajouter à l'envoi du formulaire une alerte comem quoi ça a été bie envoyé  %>
+      <div class="add-photo-container">
+      <div data-controller="upload">
+        <%= f.input :photo, as: :file, input_html: { data: { upload_target: "input" }, style: "display: none;" }, label: false %>
+        <%= image_tag "camera.svg", data: { action: "click->upload#selectFile" }, style: "cursor: pointer;" %>
+      </div>
+      </div>
+
       <%= f.input :make, label: "Marque", placeholder: "Entrez une marque" %>
       <%= f.input :model, label: "Modèle", placeholder: "Entrez un modèle" %>
       <%= f.input :engine, label: "Cylindrée", placeholder: "Entrez la cylindrée en litres" %>
@@ -14,8 +34,8 @@
 
       <%= f.input :estimated_mileage_per_year, label: "KM par an", placeholder: "Entrez un kilométrage estimé par an" %>
 
-      <%= f.input :photo, as: :file %>
-      <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
 
-<%= link_to "Annuler", cars_path %>
+</div>
+  </div>
+    </div>
