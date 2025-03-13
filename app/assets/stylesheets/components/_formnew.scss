@@ -57,12 +57,52 @@ body {
     width: 100%;
   }
 
+  // .add-photo-container {
+  //   display: flex;
+  //   width: 100%;
+  //   justify-content: center;
+  //   padding-top: 10px;
+  //   padding-bottom: 30px;
+  // }
+
   .add-photo-container {
     display: flex;
-    width: 100%;
+    flex-direction: column; /* ✅ Pour que l'icône et l'image soient en colonne */
+    align-items: center; /* ✅ Centre l'icône et l'image */
     justify-content: center;
+    width: 100%;
+    max-width: 400px; /* ✅ Définit une largeur max pour éviter que ça déborde */
+    margin: 0 auto; /* ✅ Centre le conteneur lui-même */
     padding-top: 10px;
     padding-bottom: 30px;
+    overflow: hidden; /* ✅ Coupe tout dépassement */
+}
+
+
+  .upload-icon {
+  width: 54px;
+  height: 54px;
   }
 
+  .upload-icon:hover {
+    transform: scale(1.1);
+  }
+
+  // .preview-img {
+  //   width: 100%; /* ✅ Prend toute la largeur du conteneur */
+  //   height: auto; /* ✅ Garde le ratio de l'image */
+  //   max-width: 100%; /* ✅ Optionnel : Limite la taille pour éviter l’étirement */
+  //   object-fit: contain;
+  //   border-radius: 20px;
+  // }
+
+  .preview-img {
+    width: 100%;
+    max-width: 100%; /* ✅ Empêche l’image de dépasser son parent */
+    height: auto;
+    object-fit: contain;
+    border-radius: 20px;
+    display: block; /* ✅ Évite les espaces vides autour */
+    margin: 0 auto; /* ✅ Centre l’image horizontalement */
+}
 }
