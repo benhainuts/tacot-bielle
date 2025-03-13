@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   root to: "cars#index"
   resources :cars, only: [:index, :show, :new, :create, :edit, :update] do
     resources :plan_items
-    resources :stops, only: [:index, :show, :new, :create, :edit, :update] do
-      resources :item_by_stops
-    end
+    resources :stops, only: [:index, :show, :new, :create, :edit, :update]
+  end
+
+  resources :stops do
+    resources :item_by_stops
   end
 end

@@ -3,5 +3,8 @@ class Stop < ApplicationRecord
 
   has_many :item_by_stops
 
+  validates :date, presence: true
+  validates :mileage, presence: true
+
   # has_one_attached :photo
 end
