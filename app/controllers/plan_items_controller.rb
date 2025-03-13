@@ -1,5 +1,5 @@
 class PlanItemsController < ApplicationController
-  skip_before_action :authenticate_user!
+  # skip_before_action :authenticate_user!
   before_action :set_car
   before_action :set_plan_item, only: [:show, :edit, :update]
 

@@ -1,5 +1,5 @@
 class StopsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update]
+  # skip_before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update]
   before_action :set_car
   before_action :set_stop, only: [:show, :edit, :update]
 
