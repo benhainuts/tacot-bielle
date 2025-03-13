@@ -1,0 +1,38 @@
+
+
+.form-new-user {
+  background: $yellow;
+  color: black;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  min-height: 75vh;
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 20px
+  }
+
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+}
+
+#titrenlanc {
+  color: white;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+body {
+  color: white;
+}
