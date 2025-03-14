@@ -1,4 +1,21 @@
 
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  // Ensures full height
+}
+
+.container {
+  flex-grow: 1;  // Pushes the footer to the bottom
+}
+
 .car-list-index {
   display: flex;
   flex-wrap: wrap;
@@ -31,19 +48,6 @@
     }
 }
 
-
-.footer-index {
-  background-color: white;
-  color: black;
-  border-radius: 25px 25px 0px 0px;
-  width: 100%;
-  padding: 10px 30px;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-}
-
-
 .btn-ajouter-une-voiture {
   color: white;
   background-color: black;
@@ -55,4 +59,38 @@
 
 #titre-blanc {
   color: white;
+}
+
+.dashboard-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  padding: 5px;
+  background: white;
+  border-radius: 16px;
+  position: fixed;
+  bottom: 20px; // Stick to bottom
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footer-item {
+  padding: 10px;
+  font-size: 22px;
+}
+
+.footer-item img {
+  width: 35px;
+  height: auto;
+}
+
+// Responsive design
+
+@media (max-width: 390px) {
+  .dashboard-footer {
+    max-width: 100%;
+    bottom: 30px;
+  }
 }

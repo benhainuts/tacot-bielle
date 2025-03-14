@@ -1,44 +1,48 @@
+<div class="dashboard-container">
+  <div class="d-flex align-items-center justify-content-between">
+    <h2 id="titre-blanc">Mes véhicules</h2>
+    <%= link_to new_car_path, class: "btn-ajouter-une-voiture" do %>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
+  </div>
 
-<div class="d-flex align-items-center justify-content-between">
-  <h2 id="titre-blanc">Mes véhicules</h2>
-  <%= link_to new_car_path, class: "btn-ajouter-une-voiture" do %>
-    <i class="fa-solid fa-plus"></i>
-  <% end %>
-</div>
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <ul class="car-list-index d-flex flex-wrap justify-content-center">
-        <% @cars.each do |car| %>
-          <li class="car-card-index">
-            <div class="car-image">
-              <% if car.photo.attached? %>
-                <%= link_to car_path(car) do %>
-                  <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill, alt: "Image de #{car.make} #{car.model}" %>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <ul class="car-list-index d-flex flex-wrap justify-content-center">
+          <% @cars.each do |car| %>
+            <li class="car-card-index">
+              <div class="car-image">
+                <% if car.photo.attached? %>
+                  <%= link_to car_path(car) do %>
+                    <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill, alt: "Image de #{car.make} #{car.model}" %>
+                  <% end %>
+                <% else %>
+                  <p>No Image Available</p>
                 <% end %>
-              <% else %>
-                <p>No Image Available</p>
-              <% end %>
-            </div>
-            <div class="car-infos">
-              <p><%= car.make %> - <%= car.model %> - <%= car.mileage %></p>
-            </div>
-          </li>
-        <% end %>
-      </ul>
+              </div>
+              <div class="car-infos">
+                <p><%= car.make %> - <%= car.model %> - <%= car.mileage %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+  </div>
+
+  <div class="dashboard-footer">
+    <div class="footer-item"><%= image_tag "home.svg" %></div>
+    <div class="footer-item"><%= image_tag "map.svg" %></div>
+    <div class="footer-item"><%= image_tag "calendar.svg" %></div>
+    <div class="footer-item"><%= image_tag "options.svg" %></div>
   </div>
 </div>
 
 
 
 
-<div class="footer-index">
-  <%= link_to do %>
-    <%= image_tag "home.svg", alt: "Accueil" %>
-  <% end %>
-  <%= image_tag "map.svg" %>
-  <%= image_tag "calendar.svg" %>
-  <%= image_tag "options.svg" %>
-</div>
+
+<%# <%= link_to do %>
+  <%# <%= image_tag "home.svg", alt: "Accueil" %>
+<%# <% end %>
