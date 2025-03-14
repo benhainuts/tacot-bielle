@@ -1,0 +1,71 @@
+.global-form-stop-new {
+  background: $yellow;
+  color: black;
+}
+
+
+.form-newstop {
+  background: $yellow;
+  color: black;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.plan-items-list-new {
+  list-style: none;
+  padding: 0;
+  max-width: 500px; /* ✅ Ajuste la largeur max */
+  margin: auto;
+}
+
+.plan-item-new {
+  display: flex;
+  align-items: center; /* ✅ Centre verticalement tous les éléments */
+  justify-content: space-between; /* ✅ Sépare les éléments */
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* ✅ Séparation entre les éléments */
+  gap: 15px; /* ✅ Espace entre les éléments */
+}
+
+.checkbox-container-new {
+  flex-shrink: 0; /* ✅ Empêche la case de se réduire */
+}
+
+.item-name-new {
+  flex-grow: 1; /* ✅ Prend tout l'espace restant */
+  font-weight: bold;
+}
+
+.price-container-new {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.price-label-new {
+  font-weight: bold;
+}
+
+.price-container input[type="number"] {
+  width: 80px; /* ✅ Ajuste la largeur du champ prix */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center; /* ✅ Centrage du texte */
+}
+
+.full-width-btn {
+  width: 100%;
+}
+
+.nomvoiturenewstop {
+  background-color: $yellow;
+  color:  #FC574E;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  }

@@ -9,8 +9,10 @@
       </div>
 
 <div class="row container-card">
-  <h2><strong>Passage au garage du <%= @stop.date %> pour <%=@car.full_name%></strong></h2>
-
+  <h2><strong>Passage au garage du <%= @stop.date %></h2>
+  <div class="nomvoiturecarstop">
+  <h2><%=@car.full_name%></strong></h2>
+  </div>
   <div>
     <p>Date du passage: <%= @stop.date %></p>
   </div>
@@ -44,14 +46,19 @@
                 </div>
                 <div class="col-4 text-end">
                   <strong><%= item.item_cost %> €</strong> <br>
-                  <%= link_to "Fiche entretien", car_plan_item_path(@car, item.plan_item_id), class: "btn btn-primary" %>
+
+                  <%= link_to "Fiche entretien", car_plan_item_path(@car, item.plan_item_id), class: "btn btn-success" %>
                   <%# <img src="../../images/notes.svg" alt=""></a> %>
                 </div>
                 <div class="row">
-                  original km deadline : <%=item.deadline_km_for_this_item%> km - next km : <%=item.calculated_next_km_milestone%>
-                </div>
+                  <div class="col"><strong><p>original km deadline :</strong></p></div>
+                  <div class="col"><%=item.deadline_km_for_this_item%> km
+                  <div class="col"> next km : <%=item.calculated_next_km_milestone%> </div>
+                </div> </div>
                 <div class="row">
-                  original date deadline : <%=item.deadline_date_for_this_item%> - next date : <%=item.calculated_next_date_milestone%>
+                  <div class="col"><strong><p>original date deadline :</strong></p></div>
+                  <div class="col"><%=item.deadline_date_for_this_item%>
+                  <div class="col">next date : <%=item.calculated_next_date_milestone%> </div>
                 </div>
               </div>
               <%if item != sorted_items_by_stops.last%>
