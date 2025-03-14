@@ -1,0 +1,58 @@
+
+.car-list-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.car-card-index {
+  background-color: white;
+  color: black;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+  .car-card-index img {
+    max-width: 100%;
+    border-radius: 25px 25px 0px 0px;
+
+  .car-infos {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    }
+}
+
+
+.footer-index {
+  background-color: white;
+  color: black;
+  border-radius: 25px 25px 0px 0px;
+  width: 100%;
+  padding: 10px 30px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.btn-ajouter-une-voiture {
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+.btn-ajouter-une-voiture i {
+  color: white;
+}
+
+#titre-blanc {
+  color: white;
+}

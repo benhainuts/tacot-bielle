@@ -1,36 +1,44 @@
-<h1>this is cars index</h1>
 
-<ul>
-  <% @cars.each do |car| %>
-    <li>
-
-      <%=car.make%> - <%=car.model%> - <%=car.mileage%> <%=link_to "fiche voiture", car_path(car)%>
-
-      <% if car.photo.attached? %>
-        <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill %>
-        <% else %>
-        <p>No Image Available</p>
-        <% end %>
-
-    </li>
+<div class="d-flex align-items-center justify-content-between">
+  <h2 id="titre-blanc">Mes véhicules</h2>
+  <%= link_to new_car_path, class: "btn-ajouter-une-voiture" do %>
+    <i class="fa-solid fa-plus"></i>
   <% end %>
-</ul>
+</div>
 
-<%= link_to "Déclarer une nouvelle voiture", new_car_path %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <ul class="car-list-index d-flex flex-wrap justify-content-center">
+        <% @cars.each do |car| %>
+          <li class="car-card-index">
+            <div class="car-image">
+              <% if car.photo.attached? %>
+                <%= link_to car_path(car) do %>
+                  <%= cl_image_tag car.photo.key, height: 300, width: 400, crop: :fill, alt: "Image de #{car.make} #{car.model}" %>
+                <% end %>
+              <% else %>
+                <p>No Image Available</p>
+              <% end %>
+            </div>
+            <div class="car-infos">
+              <p><%= car.make %> - <%= car.model %> - <%= car.mileage %></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<%= image_tag "price_list.svg" %>
-<%= image_tag "chat_assistance.svg" %>
-<%= image_tag "notes.svg" %>
-<%= image_tag "calendar.svg" %>
-<%= image_tag "alert.svg" %>
-<%= image_tag "camera.svg" %>
-<%= image_tag "map.svg" %>
-<%= image_tag "home.svg" %>
-<%= image_tag "maintenance.svg" %>
-<%= image_tag "options.svg" %>
-<%= image_tag "add.svg" %>
-<%= image_tag "car.svg" %>
-<%= image_tag "back_arrow.svg" %>
-<%= image_tag "fuel_pump.svg" %>
-<%= image_tag "cancel.svg" %>
-<%= image_tag "add-white.svg" %>
+
+
+
+<div class="footer-index">
+  <%= link_to do %>
+    <%= image_tag "home.svg", alt: "Accueil" %>
+  <% end %>
+  <%= image_tag "map.svg" %>
+  <%= image_tag "calendar.svg" %>
+  <%= image_tag "options.svg" %>
+</div>

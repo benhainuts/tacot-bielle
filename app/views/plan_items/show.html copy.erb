@@ -1,0 +1,32 @@
+<h1> Coucou from plan items  show</h1>
+
+<p>
+Opération : <%=@plan_item.name%> pour <%=@car.full_name%>
+</p>
+<p>
+A faire tous les : <%=@plan_item.to_do_every_x_km%> km
+</p>
+
+<p>
+A faire tous les : <%=@plan_item.to_do_every_x_years%> ans
+</p>
+
+TABLEAU DE L HSITORIQUE DES ITEMS
+
+<h2>Items couverts</h2>
+<ul>
+  <%@item_by_stops.each do |item|%>
+    <li><div>stop id : <%=item.stop_id%> - date : <%=Stop.find(item.stop_id).date%> à <%=Stop.find(item.stop_id).mileage%> - plan item : <%=item.plan_item_id%> - <%=PlanItem.find(item.plan_item_id).name%> - price : <%=item.item_cost%></div>
+    <div>
+     - original km deadline : <%=item.deadline_km_for_this_item%> - next km : <%=item.calculated_next_km_milestone%>
+    </div>
+    <div>
+     - original date deadline : <%=item.deadline_date_for_this_item%> - next date : <%=item.calculated_next_date_milestone%>
+    </div>
+    </li>
+  <%end%>
+</ul>
+
+<div>
+<%=link_to "retour à la voiture", car_path(@car)%>
+</div>

@@ -1,6 +1,14 @@
-<h1>Stops#edit</h1>
-<p>Find me in app/views/stops/edit.html.erb</p>
- <%= simple_form_for [@car, @stop] do |f| %>
+<div class="form-newcar">
+ <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-4">
+
+
+      <div class="horizontal-new-container">
+      <%= link_to "Annuler", car_stop_path(@car,@stop), class: "btn-link-annuler" %>
+      <h6><strong>Modification du stop garage pour <%=@car.full_name%></strong></h6>
+      </div>
+
+    <%= simple_form_for [@car, @stop] do |f| %>
       <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date du passage", placeholder: "Entrez une date" %>
       <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
       <%= f.input :cost, label: "Montant de la facture", placeholder: "Entrez le montant" %>
@@ -16,5 +24,5 @@
         </ul>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
-
-<%= link_to "retour", car_stop_path(@car,@stop) %>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+body {
+  background: black;
+}
+
+.form-newcar {
+  background: $yellow;
+  color: black;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 20px
+  }
+
+  .file-upload {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .file-input {
+    display: none; /* Masquer l'input de fichier */
+  }
+
+  .btn-link-envoyer {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+    text-decoration: none;
+  }
+
+  .link-button-annuler {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: inherit;
+    padding-bottom: 10;
+    text-decoration: none;
+  }
+
+  .horizontal-new-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .add-photo-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+
+}

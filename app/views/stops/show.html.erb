@@ -1,38 +1,65 @@
-<h1>Stops#show</h1>
-<p>Find me in app/views/stops/show.html.erb</p>
+<div class="form-newcar">
+ <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-4">
 
-<h1>this is garage-car show</h1>
+
+      <div class="horizontal-new-container">
+      <%= link_to "retour", car_path(@car), class: "btn-link-annuler" %>
+      <%= link_to "Editer", edit_car_stop_path(@car,@stop), class: "btn-link-annuler" %>
+      </div>
+
+<div class="row container-card">
+  <h2><strong>Passage au garage du <%= @stop.date %> pour <%=@car.full_name%></strong></h2>
+
+  <div>
+    <p>Date du passage: <%= @stop.date %></p>
+  </div>
+  <div>
+    Garage: <%= @stop.garage %>
+  </div>
+  <div>
+    Prix: <%= @stop.cost %> €
+  </div>
+  <div>
+    Kilomètrage au passage: <%= @stop.mileage %>km
+  </div>
+</div>
+
+<h2>Opération d'entretien réalisées</h2>
+
+<div class="row">
+    <%if @stop.item_by_stops.nil?%>
+        <p>pas d'opération d'entretien réalisée</p>
+      <%else%>
+
+        <ul>
+          <%sorted_items_by_stops = @stop.item_by_stops.sort { |a,b| b.stop.date <=> a.stop.date} %>
+          <% sorted_items_by_stops.each do |item|%>
+            <li>
+              <div class="row container-card">
+                <div class="col-8 align-middle">
+                  <strong><%=PlanItem.find(item.plan_item_id).name%></strong> <br>
+                  next km : <%=item.calculated_next_km_milestone%> <br>
+                  next date : <%=item.calculated_next_date_milestone%>
+                </div>
+                <div class="col-4 text-end">
+                  <strong><%= item.item_cost %> €</strong> <br>
+                  <%= link_to "Fiche entretien", car_plan_item_path(@car, item), class: "btn btn-primary" %>
+                  <%# <img src="../../images/notes.svg" alt=""></a> %>
+                </div>
+                <div class="row">
+                  original km deadline : <%=item.deadline_km_for_this_item%> km - next km : <%=item.calculated_next_km_milestone%>
+                </div>
+                <div class="row">
+                  original date deadline : <%=item.deadline_date_for_this_item%> - next date : <%=item.calculated_next_date_milestone%>
+                </div>
+              </div>
+              <%if item != sorted_items_by_stops.last%>
+                <hr>
+              <%end%>
+            </li>
+          <% end %>
+        </ul>
+      <%end%>
 
 <div>
-Date du passage - <%= @stop.date %>
-</div>
-<div>
-Garage - <%= @stop.garage %>
-</div>
-<div>
-Prix - <%= @stop.cost %> €
-</div>
-<div>
-Kilomètrage au passage - <%= @stop.mileage %>
-</div>
-
-<h2>Items couverts</h2>
-<ul>
-  <%@stop.item_by_stops.each do |item|%>
-    <li><div>stop id : <%=item.stop_id%> - plan item : <%=item.plan_item_id%> - <%=PlanItem.find(item.plan_item_id).name%> - price : <%=item.item_cost%></div>
-    <div>
-     - original km deadline : <%=item.deadline_km_for_this_item%> - next km : <%=item.calculated_next_km_milestone%>
-    </div>
-    <div>
-     - original date deadline : <%=item.deadline_date_for_this_item%> - next date : <%=item.calculated_next_date_milestone%>
-    </div>
-    </li>
-  <%end%>
-</ul>
-
-<div>
-<%=link_to "editer", edit_car_stop_path(@car,@stop)%>
-</div>
-<div>
-<%=link_to "retour à la voiture", car_path(@car)%>
-</div>
