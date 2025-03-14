@@ -13,6 +13,8 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = current_user
+
+    
     @car.make = @car.make.upcase()
     @car.model = @car.model.capitalize()
     # raise
@@ -44,10 +46,8 @@ class CarsController < ApplicationController
 private
 
 def car_params
-
   params.require(:car).permit(:make, :model, :mileage, :date_of_first_purchase, :estimated_mileage_per_year, :engine, :fuel, :horsepower, :maintenance_status, :last_follow_up_km, :last_follow_up_date, :photo)
   # :control_date, :maintenance_status
-
 end
 
 def set_car

@@ -77,13 +77,16 @@
 .dashboard-footer {
   display: flex;
   justify-content: space-around;
-  width: 75vw;
-  max-width: 350px;
-  background: #ffffff;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  padding: 5px;
+  background: white;
   border-radius: 16px;
-  // bottom: 30px;
-  // position: absolute;
-  align-content: center;
+  position: fixed;
+  bottom: 20px; // Stick to bottom
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .footer-item {
