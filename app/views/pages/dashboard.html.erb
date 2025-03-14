@@ -5,7 +5,9 @@
 
   <div class="dashboard-grid">
     <div class="two-items-per-line">
-      <div class="dashboard-item-1 yellow"><%= image_tag "car.svg" %>Véhicules</div>
+      <%= link_to cars_path, class: "dashboard-item-1 yellow" do %>
+        <div class="dashboard-item-1 yellow"><%= image_tag "car.svg" %>Véhicules</div>
+      <% end %>
       <div class="dashboard-item white"><%= image_tag "fuel_pump.svg" %></i></div>
     </div>
 

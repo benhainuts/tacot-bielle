@@ -4,9 +4,10 @@
     <div class="col-12 col-sm-8 col-lg-4">
 
 
-      <div class="horizontal-new-container">
+      <div class="horizontal-new-container position-sticky top-0 bg-primary rounded-3">
       <%= link_to "Annuler", cars_path, class: "btn-link-annuler" %>
         <h6><strong>Nouveau véhicule</strong></h6>
+
        <%= simple_form_for @car do |f| %>
       <%= f.button :submit, "Enregistrer", class: "btn-link-envoyer", style: "background: none; border: none; color: inherit; cursor: pointer;" %>
       </div>
@@ -27,20 +28,20 @@
         </div>
 
 
+      <div data-controller="auto-fill">
+        <%= f.input :make, label: "Marque", placeholder: "Entrez une marque" %>
+        <%= f.input :model, label: "Modèle", placeholder: "Entrez un modèle" %>
+        <%= f.input :fuel, label: "Energie", collection: Car::ENERGIE, prompt: "Sélectionnez l'énergie" %>
+        <%= f.input :engine, label: "Cylindrée", placeholder: "Entrez la cylindrée en litres" %>
+        <%= f.input :horsepower, label: "Puissance(chevaux)", placeholder: "Entrez la puissance de votre moteur" %>
+        <%= f.input :mileage, label: "Kilomètrage", input_html: { data: { auto_fill_target: "source", action: "input->auto-fill#update" }}, placeholder: "Entrez le kilométrage du véhicule" %>
+        <%= f.input :date_of_first_purchase, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date de première mise en circulation", placeholder: "Entrez une date" %>
+        <%# <%= f.input :control_date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date du dernier contrôle technique", placeholder: "Entrez une date" %>
+        <%= f.input :last_follow_up_km, label: "L'entretien a été suivi jusque (km)", input_html: { data: { auto_fill_target: "destination" } }, placeholder: "Entrez un kilométrage" %>
+        <%= f.input :last_follow_up_date, as: :string, input_html: { data: { controller: "datepicker" }, value: Date.today }, label: "l'entretien a été suivi jusque (date)", placeholder: "Entrez une date" %>
 
-      <%= f.input :make, label: "Marque", placeholder: "Entrez une marque" %>
-      <%= f.input :model, label: "Modèle", placeholder: "Entrez un modèle" %>
-      <%= f.input :engine, label: "Cylindrée", placeholder: "Entrez la cylindrée en litres" %>
-      <%= f.input :fuel, label: "Carburant", placeholder: "Entrez le carburant" %>
-      <%= f.input :horsepower, label: "Puissance(chevaux)", placeholder: "Entrez la puissance de votre moteur" %>
-      <%= f.input :mileage, label: "Kilomètrage", placeholder: "Entrez le kilométrage du véhicule" %>
-      <%= f.input :date_of_first_purchase, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date de première mise en circulation", placeholder: "Entrez une date" %>
-      <%= f.input :control_date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date du dernier contrôle technique", placeholder: "Entrez une date" %>
-      <%= f.input :last_follow_up_km, label: "l'entretien a été suivi jusque (km)", placeholder: "Entrez un kilométrage" %>
-      <%= f.input :last_follow_up_date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "l'entretien a été suivi jusque (date)", placeholder: "Entrez une date" %>
-
-      <%= f.input :estimated_mileage_per_year, label: "KM par an", placeholder: "Entrez un kilométrage estimé par an" %>
-
+        <%= f.input :estimated_mileage_per_year, label: "Distance parcourue par an (KM)", placeholder: "Entrez un kilométrage estimé par an" %>
+      </div>
     <% end %>
 
 </div>

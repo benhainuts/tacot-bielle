@@ -1,25 +1,27 @@
-<div class="form-newcar container ">
+<div class="form-plan-item container ">
   <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-4">
 
 
       <div class="horizontal-new-container">
-      <%= link_to "Retour à ma voiture", car_path(@car), class: "btn-link-annuler" %>
+      <%= link_to "Retour", car_path(@car), class: "btn-link-annuler" %>
 
 
       </div>
 
 <div class="row container-card">
-  <h2><strong><%=@plan_item.name%></strong></h2> pour <strong><%=@car.full_name%></strong></h2>
+  <h2><strong><%=@plan_item.name%></strong></h2>
+  <div class="nomvoitureplanitemshow">
+  <strong><%=@car.full_name%></strong></h2>
+  </div>
+    <p>
+    <strong> A faire tous les :</strong> <%=@plan_item.to_do_every_x_km%> km
+    </p>
 
-  <p>
-  A faire tous les : <%=@plan_item.to_do_every_x_km%> km
-  </p>
-
-  <p>
-  A faire tous les : <%=@plan_item.to_do_every_x_years%> ans
-  </p>
-</div>
+    <p>
+    <strong> A faire tous les :</strong> <%=@plan_item.to_do_every_x_years%> ans
+    </p>
+  </div>
 
 
 <h2>Historique des passages</h2>
