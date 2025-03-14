@@ -13,13 +13,20 @@
 
 
 
-<%# Si possible ajouter à l'envoi du formulaire une alerte comem quoi ça a été bie envoyé  %>
-      <div class="add-photo-container">
-      <div data-controller="upload">
-        <%= f.input :photo, as: :file, input_html: { data: { upload_target: "input" }, style: "display: none;" }, label: false %>
-        <%= image_tag "camera.svg", data: { action: "click->upload#selectFile" }, style: "cursor: pointer;" %>
-      </div>
-      </div>
+        <div class="add-photo-container" data-controller="upload">
+          <!-- Champ de fichier caché -->
+          <%= f.input :photo, as: :file,
+                input_html: { data: { upload_target: "input", action: "change->upload#previewImage" }, style: "display: none;" },
+                label: false %>
+
+          <!-- Icône d’upload -->
+          <%= image_tag "camera.svg", class: "upload-icon", data: { action: "click->upload#selectFile", upload_target: "icon" } %>
+
+          <!-- Image de prévisualisation -->
+          <img data-upload-target="preview" class="preview-img" style="display: none;">
+        </div>
+
+
 
       <%= f.input :make, label: "Marque", placeholder: "Entrez une marque" %>
       <%= f.input :model, label: "Modèle", placeholder: "Entrez un modèle" %>
