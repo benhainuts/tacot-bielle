@@ -1,10 +1,20 @@
-<h1>this is car edit</h1>
+<div class="form-newcar">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-4">
 
- <%= simple_form_for @car do |f| %>
-      <%= f.input :mileage, label: "Kilomètrage", placeholder: "Entrez le kilométrage du véhicule"%>
+
+      <div class="horizontal-new-container">
+      <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler" %>
+      <h6><strong>Mise à jour du kilométrage pour <%=@car.full_name%></strong></h6>
+      </div>
+
+      <%= simple_form_for @car do |f| %>
+          <%= f.input :mileage, label: "Kilomètrage", placeholder: "Entrez le kilométrage du véhicule"%>
 
 
-      <%= f.button :submit, class: "btn btn-primary" %>
-    <% end %>
+          <%= f.button :submit, class: "btn btn-primary" %>
+        <% end %>
 
-<%= link_to "annuler", car_path(@car)%>
+      </div>
+    </div>
+  </div>

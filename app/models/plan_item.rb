@@ -20,7 +20,7 @@ class PlanItem < ApplicationRecord
     car = Car.find(car_id)
 
     if last_stop_item.nil?
-      deadline_date_for_this_item = car.last_follow_up_date + to_do_every_x_years*365*((car.age_in_days_on(car.last_follow_up_date)).div(to_do_every_x_years*365)+1)
+      deadline_date_for_this_item = car.date_of_first_purchase + to_do_every_x_years*365*((car.age_in_days_on(car.last_follow_up_date)).div(to_do_every_x_years*365)+1)
     else
       last_stop = Stop.find(last_stop_item.stop_id)
       deadline_date_for_this_item = last_stop.date + to_do_every_x_years*365

@@ -1,11 +1,21 @@
-<h1> Coucou from plan items new </h1>
+<div class="form-newcar">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-4">
 
- <%= simple_form_for [@car, @plan_item] do |f| %>
-      <%= f.input :name, label: "Nom de l'entretien", placeholder: "Entrez un nom pour l'entretien" %>
-      <%= f.input :to_do_every_x_km, label: "à faire tous les x km", placeholder: "Entrez une fréquence d'entetien en km" %>
-      <%= f.input :to_do_every_x_years, label: "à faire tous les x_ans", placeholder: "Entrez une fréquence d'entetien en années"%>
 
-      <%= f.button :submit, class: "btn btn-primary" %>
-    <% end %>
+      <div class="horizontal-new-container">
+      <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler" %>
+      <h6><strong>Nouveau type d'entretien pour <%=@car.full_name%></strong></h6>
+      </div>
 
-<%= link_to "Annuler", car_path(@car)%>
+
+      <%= simple_form_for [@car, @plan_item] do |f| %>
+        <%= f.input :name, label: "Nom de l'entretien", placeholder: "Entrez un nom pour l'entretien" %>
+        <%= f.input :to_do_every_x_km, label: "à faire tous les x km", placeholder: "Entrez une fréquence d'entetien en km" %>
+        <%= f.input :to_do_every_x_years, label: "à faire tous les x_ans", placeholder: "Entrez une fréquence d'entetien en années"%>
+
+        <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
