@@ -53,6 +53,8 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 #pour les prompts chatgpt
 gem "ruby-openai"
+#pour pouvoir ajouter des i calendars
+gem 'icalendar'
 
 group :development, :test do
   gem "dotenv-rails"

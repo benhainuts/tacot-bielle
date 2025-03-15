@@ -3,6 +3,8 @@ class PlanItem < ApplicationRecord
 
   has_many :item_by_stops
 
+  require 'icalendar'
+
   def next_km_milestone
     last_stop_item = ItemByStop.where(plan_item_id: id).last
 
@@ -57,6 +59,37 @@ class PlanItem < ApplicationRecord
     else
       return "TO DO"
     end
+  end
+
+  def generate_ics
+    cal = Icalendar::Calendar.new
+    filename = "Prendre RDV pour #{name} de la #{car.full_name}"
+
+    # if params[:format] == 'vcs'
+    #   cal.prodid = '-//Microsoft Corporation//Outlook MIMEDIR//EN'
+    #   cal.version = '1.0'
+    #   filename += '.vcs'
+    # else # ical
+      cal.prodid = '-//Acme Widgets, Inc.//NONSGML ExportToCalendar//EN'
+      cal.version = '2.0'
+      filename += '.ics'
+    # end
+
+    cal.event do |e|
+      e.dtstart     = Icalendar::Values::DateTime.new((next_date_milestone - 45).to_datetime, tzid: Time.zone.name)
+      e.dtend       = Icalendar::Values::DateTime.new(next_date_milestone.to_datetime, tzid: Time.zone.name)
+      e.summary     = "Prendre RDV pour #{name} de la #{car.full_name}"
+      e.description = "#{name} de la #{car.full_name} à faire
+                        - avant le #{next_date_milestone}
+                          ou
+                        - avant #{next_km_milestone}km"
+      e.url         = nil
+      e.location    = nil
+      e.ip_class = "PRIVATE"
+    end
+    cal.publish
+    # cal.to_ical
+    # cal.send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: filename
   end
 
 end
