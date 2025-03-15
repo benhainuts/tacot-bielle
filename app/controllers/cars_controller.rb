@@ -14,13 +14,11 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
 
-    
+
     @car.make = @car.make.upcase()
     @car.model = @car.model.capitalize()
     # raise
     if @car.save
-
-      create_maintenance(@car)
       redirect_to car_path(@car)
 
     else
@@ -33,6 +31,10 @@ class CarsController < ApplicationController
   end
 
   def edit
+  end
+
+  def add_plan
+    create_maintenance(@car)
   end
 
   def update
