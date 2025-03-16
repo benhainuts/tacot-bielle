@@ -70,9 +70,9 @@ class PlanItem < ApplicationRecord
     #   cal.version = '1.0'
     #   filename += '.vcs'
     # else # ical
-      cal.prodid = '-//Acme Widgets, Inc.//NONSGML ExportToCalendar//EN'
-      cal.version = '2.0'
-      filename += '.ics'
+      # cal.prodid = '-//Acme Widgets, Inc.//NONSGML ExportToCalendar//EN'
+      # cal.version = '2.0'
+      # filename += '.ics'
     # end
 
     cal.event do |e|
@@ -88,7 +88,7 @@ class PlanItem < ApplicationRecord
       e.ip_class = "PRIVATE"
     end
     cal.publish
-    # cal.to_ical
+    cal.to_ical
     # cal.send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: filename
   end
 

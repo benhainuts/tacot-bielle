@@ -22,6 +22,13 @@ class PlanItemsController < ApplicationController
 
   def show
     @item_by_stops = ItemByStop.where(plan_item_id: @plan_item.id)
+
+    respond_to do |format|
+      format.html
+      format.ics do
+        render plain: @plan_item.generate_ics
+      end
+    end
   end
 
   def edit
