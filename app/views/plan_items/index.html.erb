@@ -17,7 +17,7 @@
                 status <%=plan_item.deadline_status%>
               </div>
               <div class="col-4">
-                <%= link_to "ajouter au calendrier", car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary"
+                <%= link_to "ajouter au calendrier", car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary"%>
                 <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
                 <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
                 <%# <img src="../../images/notes.svg" alt=""></a> %>

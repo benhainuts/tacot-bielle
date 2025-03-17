@@ -18,12 +18,25 @@
       <%= f.input :cost, label: "Montant de la facture", placeholder: "Entrez le montant" %>
       <%= f.input :mileage, label: "Kilométrage au passage", placeholder: "Entrez le kilométrage" %>
       <div>Opérations d'entretiens réalisées</div>
-      <ul>
-      <% params[:items].each do |item|%>
-          <%i = PlanItem.find(item.to_i)%>
-          <%=i.name%>%
-      <%end%>
-      </ul>
+
+
+    <ul class="plan-items-list-new">
+      <% @car.plan_items.each do |item| %>
+        <li class="plan-item-new">
+          <div class="checkbox-container-new">
+            <input type="checkbox" id="<%= item.id %>" name="item[<%= item.id %>]">
+          </div>
+          <div class="item-name">
+            <%= item.name %>
+          </div>
+          <div class="price-container-new">
+            <span class="price-label-new"> Prix: </span>
+            <input type="number" name="itemprice[<%= item.id %>]">
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
 
       <%= f.button :submit, class: "btn btn-success full-width-btn" %>
     <% end %>

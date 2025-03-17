@@ -1,16 +1,12 @@
-<div class="global-form-stop-new">
-
-
-<div class="form-new">
+<div class="form-newcar">
  <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-4">
 
-      <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler" %>
-      <h5><strong>Nouveau passage au garage</h5>
-      <div class="nomvoiturenewstop">
-      <%=@car.full_name%></strong></h5>
-      </div>
 
+      <div class="horizontal-new-container">
+      <%= link_to "Annuler", car_stop_path(@car,@stop), class: "btn-link-annuler" %>
+      <h6><strong>Modification du stop garage pour <%=@car.full_name%></strong></h6>
+      </div>
 
     <%= simple_form_for [@car, @stop] do |f| %>
       <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date du passage", placeholder: "Entrez une date" %>
@@ -18,17 +14,15 @@
       <%= f.input :cost, label: "Montant de la facture", placeholder: "Entrez le montant" %>
       <%= f.input :mileage, label: "Kilométrage au passage", placeholder: "Entrez le kilométrage" %>
       <div>Opérations d'entretiens réalisées</div>
-      <ul>
-      <% params[:items].each do |item|%>
-          <%i = PlanItem.find(item.to_i)%>
-          <%=i.name%>%
-      <%end%>
-      </ul>
-
-      <%= f.button :submit, class: "btn btn-success full-width-btn" %>
+        <ul>
+        <% @car.plan_items.each do |item|%>
+          <li>
+            <input type="checkbox" id=<%= item %> name="item[<%= item.id %>]"><%= item.name %>
+            price : <input type="number" name="itemprice[<%= item.id %>]" >
+          </li>
+        <%end%>
+        </ul>
+      <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
-    </div>
   </div>
-</div>
-
 </div>

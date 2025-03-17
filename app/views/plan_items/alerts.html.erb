@@ -1,0 +1,36 @@
+<h1>Mes entretiens</h1>
+
+<div data-controller="plan-item-selector"></div>
+
+<form action="<%= new_car_stop_path(@car) %>" method="get">
+<ul>
+  <% @plan_items_alerts.each do |plan_item| %>
+          <li>
+            <div class="row">
+              <div class="checkbox-container-new">
+                <div class="col-1 align-middle">
+                  <input type="checkbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                </div>
+                <div class="col-7 align-middle">
+                  <strong><%= plan_item.name %></strong> <br>
+                  <%= plan_item.next_km_milestone %>km <br>
+                  ou le <%= plan_item.next_date_milestone %>
+                  status <%= plan_item.deadline_status %>
+                </div>
+                <div class="col-4">
+                  <%= link_to "ajouter au calendrier", car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary" %>
+                  <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                  <%= link_to "modifier", create_stop_from_alerts_path(@car, :params), class: "btn btn-primary" %>
+                  <%# <img src="../../images/notes.svg" alt=""></a> %>
+                </div>
+              </div>
+            </div>
+            <% if plan_item != @plan_items_alerts.last %>
+              <hr>
+            <% end %>
+          </li>
+  <% end %>
+</ul>
+
+<input type="submit" class="btn btn-primary">
+</form>
