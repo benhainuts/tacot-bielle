@@ -19,12 +19,12 @@
       <%= f.input :mileage, label: "Kilométrage au passage", placeholder: "Entrez le kilométrage" %>
       <div>Opérations d'entretiens réalisées</div>
       <ul>
-      <% params[:items].each do |item|%>
+      <% @items.each do |item|%>
           <%i = PlanItem.find(item.to_i)%>
           <%=i.name%>%
       <%end%>
       </ul>
-
+      <%= f.hidden_field :items, value: @items.split(" ")%>
       <%= f.button :submit, class: "btn btn-success full-width-btn" %>
     <% end %>
     </div>

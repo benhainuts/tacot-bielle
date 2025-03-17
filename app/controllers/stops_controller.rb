@@ -14,20 +14,21 @@ class StopsController < ApplicationController
 
   def new
     @stop = @car.stops.new
-    @params = params[:items]
+    @items =params[:items]
     # PlanItem.find(id)
     # raise
 
   end
 
   def create
-    raise
+    # raise
     @stop = @car.stops.new(stop_params)
     if @stop.save
       if Car.find(@stop.car_id).mileage < @stop.mileage
         Car.find(@stop.car_id).update(mileage: @stop.mileage)
       end
-      params.require(:items).each do |item|
+
+      stop_items[:items].split(" ").each do |item|
         # cost = params.require(:itemprice)[item]
         last_stop_item = ItemByStop.where(plan_item_id: item.to_i).last
         plan_item = PlanItem.find(item.to_i)
@@ -80,4 +81,7 @@ class StopsController < ApplicationController
     params.require(:stop).permit(:date, :garage, :cost, :mileage)
   end
 
+  def stop_items
+    params.require(:stop).permit(:items)
+  end
 end
