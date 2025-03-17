@@ -16,12 +16,20 @@
   </div>
     <p>
     <strong> A faire tous les :</strong> <%=@plan_item.to_do_every_x_km%> km
+    prochaine échéance : <%=@plan_item.next_km_milestone%>
     </p>
 
     <p>
     <strong> A faire tous les :</strong> <%=@plan_item.to_do_every_x_years%> ans
+    prochaine échéance : <%=@plan_item.next_date_milestone%>
+    <%= link_to "ajouter au calendrier", car_plan_item_path(@car, @plan_item, format: :ics), class: "btn btn-primary"%>
     </p>
+
+
+
   </div>
+
+
 
 
 <h2>Historique des passages</h2>
