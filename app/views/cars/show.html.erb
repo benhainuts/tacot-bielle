@@ -55,18 +55,62 @@
     <%# <div class="col-6">Nom</div>
     <div class="col-3">Echeance km</div>
     <div class="col-3">Echeance date</div> %>
-    <%if @car.plan_items.nil?%>
+    <%if @car.plan_items.empty?%>
       <p>pas d'opération déclarée dans le plan d'entretien<p>
+      <%= link_to "créer un plan d'entretien", car_plan_items_path(@car), class: "btn btn-primary" %>
     <%else%>
       <ul>
-        <%sorted_items = @plan_items.sort { |a,b| a.next_date_milestone <=> b.next_date_milestone} %>
+        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'LATE' }%>
         <% sorted_items.each do |plan_item|%>
           <li>
             <div class="row">
               <div class="col-8 align-middle">
                 <strong><%= plan_item.name %></strong> <br>
-                à <%=plan_item.next_km_milestone%>km <br>
+                <%=plan_item.next_km_milestone%>km <br>
                 ou le <%=plan_item.next_date_milestone%>
+                status <%=plan_item.deadline_status%>
+              </div>
+              <div class="col-4">
+                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+            <%if plan_item != sorted_items.last%>
+              <hr>
+            <%end%>
+          </li>
+        <% end %>
+        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'URGENT' }%>
+        <% sorted_items.each do |plan_item|%>
+          <li>
+            <div class="row">
+              <div class="col-8 align-middle">
+                <strong><%= plan_item.name %></strong> <br>
+                <%=plan_item.next_km_milestone%>km <br>
+                ou le <%=plan_item.next_date_milestone%>
+                status <%=plan_item.deadline_status%>
+              </div>
+              <div class="col-4">
+                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+            <%if plan_item != sorted_items.last%>
+              <hr>
+            <%end%>
+          </li>
+        <% end %>
+        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'TO DO' }%>
+        <% sorted_items.each do |plan_item|%>
+          <li>
+            <div class="row">
+              <div class="col-8 align-middle">
+                <strong><%= plan_item.name %></strong> <br>
+                <%=plan_item.next_km_milestone%>km <br>
+                ou le <%=plan_item.next_date_milestone%>
+                status <%=plan_item.deadline_status%>
               </div>
               <div class="col-4">
                 <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>

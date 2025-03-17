@@ -1,0 +1,36 @@
+<div class = "row container-card ">
+    <h2>Prochaines échéances</h2>
+    <div id="plandentretien">
+    <%# <div class="col-6">Nom</div>
+    <div class="col-3">Echeance km</div>
+    <div class="col-3">Echeance date</div> %>
+
+      <ul>
+
+        <% @plan_items.each do |plan_item|%>
+          <li>
+            <div class="row">
+              <div class="col-8 align-middle">
+                <strong><%= plan_item.name %></strong> <br>
+                <%=plan_item.next_km_milestone%>km <br>
+                ou le <%=plan_item.next_date_milestone%>
+                status <%=plan_item.deadline_status%>
+              </div>
+              <div class="col-4">
+                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+            <%if plan_item != @plan_items.last%>
+              <hr>
+            <%end%>
+          </li>
+        <% end %>
+
+      </ul>
+
+    <%= link_to "ajouter un item au plan d'entretien", new_car_plan_item_path(@car), class: "btn btn-primary"%>
+    <p data-bs-toggle="collapse" data-bs-target="#plandentretien">⋀</p>
+
+    </div>
