@@ -6,5 +6,5 @@ class Stop < ApplicationRecord
   validates :date, presence: true
   validates :mileage, presence: true
 
-  # has_one_attached :photo
+  has_many_attached :photos
 end
