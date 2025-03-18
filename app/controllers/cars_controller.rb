@@ -45,9 +45,13 @@ class CarsController < ApplicationController
 
   def call_maintenance
     create_maintenance(@car)
-
+    create_control(@car)
+    redirect_to car_path(@car)
       # Logic for handling GET requests
+  end
 
+  def details
+    @car = Car.find(params[:id])
   end
 
 private
@@ -67,7 +71,7 @@ def create_maintenance(car)
   chatgpt_response = client.chat(parameters: {
     model: "gpt-4o-mini",
     messages: [{ role: "user", content:
-  "une voiture marque #{car.make} Modele #{car.model} #{car.engine} #{car.fuel} #{car.horsepower} de #{car.date_of_first_purchase} avec #{car.mileage} km et faisant #{car.estimated_mileage_per_year} km par an.  liste moi dans un json chaque entretien a faire, avec au minimum (vidange d'huile moteur / remplacement du filtre à air / remplacement du filtre à carburant / remplacement du filtre d'habitable / remplacement de la courroie de distribution / purge et remplacement du liquide de frein / remplacement du liquide de refroidissement)  selon le constructeur avec son nom dans name: sa périodicité en km dans to_do_every_x_km: et sa periodicite en année dans to_do_every_x_years. ne renvoie que ce json"}]
+  "une voiture de marque #{car.make} Modele #{car.model} moteur #{car.engine} carburant #{car.fuel} puissance #{car.horsepower} de #{car.date_of_first_purchase} avec #{car.mileage} km et faisant #{car.estimated_mileage_per_year} km par an.  liste moi dans un json chaque entretien a faire, avec au minimum si applicable (vidange huile/ filtre à air / filtre carburant / filtre d'habitable / courroie de distribution / liquide de frein / liquide de refroidissement / révision), avec des intitulés courts ( 30 caracteres max) selon le constructeur avec son nom dans name: sa périodicité en km dans to_do_every_x_km: et sa periodicite en année dans to_do_every_x_years. ne renvoie que ce json, si erreur renvoie ce json vide."}]
   })
   content = chatgpt_response["choices"][0]["message"]["content"]
   g = content.gsub('```','')
@@ -77,6 +81,10 @@ def create_maintenance(car)
   h.each do |ligne|
     PlanItem.create(car: car, name: ligne[:name], to_do_every_x_km: ligne[:to_do_every_x_km], to_do_every_x_years: ligne[:to_do_every_x_years])
   end
+end
+
+def create_control(car)
+    PlanItem.create(car: car, name: "Contrôle technique", to_do_every_x_km: car.estimated_mileage_per_year*2, to_do_every_x_years: 2)
 end
 
 end

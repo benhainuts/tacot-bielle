@@ -9,7 +9,11 @@ class PlanItem < ApplicationRecord
     last_stop_item = ItemByStop.where(plan_item_id: id).last
 
     if last_stop_item.nil?
-      deadline_km_for_this_item = to_do_every_x_km*(1+Car.find(car_id).last_follow_up_km.div(to_do_every_x_km))
+      if name == "Contrôle technique" && car.date_of_first_purchase < Date.today - 4*365
+        deadline_km_for_this_item = car.mileage + (4-car.age_in_days_on(Date.today)/(365))*car.estimated_mileage_per_year
+      else
+        deadline_km_for_this_item = to_do_every_x_km*(1+Car.find(car_id).last_follow_up_km.div(to_do_every_x_km))
+      end
     else
       last_stop = Stop.find(last_stop_item.stop_id)
       deadline_km_for_this_item = to_do_every_x_km + last_stop.mileage
@@ -30,7 +34,11 @@ class PlanItem < ApplicationRecord
     car = Car.find(car_id)
 
     if last_stop_item.nil?
-      deadline_date_for_this_item = car.date_of_first_purchase + to_do_every_x_years*365*((car.age_in_days_on(car.last_follow_up_date)).div(to_do_every_x_years*365)+1)
+      if name == "Contrôle technique" && car.date_of_first_purchase < Date.today - 4*365
+          deadline_date_for_this_item = car.date_of_first_purchase + 4*365
+      else
+          deadline_date_for_this_item = car.date_of_first_purchase + to_do_every_x_years*365*((car.age_in_days_on(car.last_follow_up_date)).div(to_do_every_x_years*365)+1)
+      end
     else
       # last_stop = Stop.find(last_stop_item.stop_id)
       deadline_date_for_this_item = last_stop.date + to_do_every_x_years*365
@@ -50,7 +58,7 @@ class PlanItem < ApplicationRecord
 
   def deadline_status
     case
-    when days_to_go > 45 && km_to_go > car.estimated_mileage_per_year/1.5
+    when days_to_go > 45 && km_to_go > car.estimated_mileage_per_year/8
       return "ok"
     when days_to_go < 0 || km_to_go < 0
       return "en retard"
@@ -63,7 +71,7 @@ class PlanItem < ApplicationRecord
 
   def deadline_status_km
     case
-    when km_to_go > car.estimated_mileage_per_year/1.5
+    when km_to_go > car.estimated_mileage_per_year/8
       return "ok"
     when km_to_go < 0
       return "en retard"
