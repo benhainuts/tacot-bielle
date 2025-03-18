@@ -15,10 +15,15 @@
 
 .plan-items-alerts-card-tickbox {
   border: 3px solid $gray;
-  background-color: lightblue;
+  background-color: rgb(129, 138, 141);
   transform: scale(3);
   margin-left: 10px;
-};
+
+  &:checked {
+    accent-color: $gray;
+  }
+
+}
 
 .plan-items-alerts-card {
   display: flex;

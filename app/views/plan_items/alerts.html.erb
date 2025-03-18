@@ -2,7 +2,7 @@
 
 <div class="plan-items-alerts-container">
 
-<form action="<%= new_car_stop_path(@car) %>" method="get">
+<form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false">
 <ul>
   <% @plan_items_alerts.each do |plan_item| %>
           <li>

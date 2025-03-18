@@ -13,8 +13,9 @@ class StopsController < ApplicationController
   end
 
   def new
+    # raise
     @stop = @car.stops.new
-    @items =params[:items]
+    @items = params[:items]
     # PlanItem.find(id)
     # raise
 
@@ -22,13 +23,15 @@ class StopsController < ApplicationController
 
   def create
     # raise
+    # binding.pry
     @stop = @car.stops.new(stop_params)
     if @stop.save
       if Car.find(@stop.car_id).mileage < @stop.mileage
         Car.find(@stop.car_id).update(mileage: @stop.mileage)
       end
 
-      stop_items[:items].split(" ").each do |item|
+      if !stop_items[:items].nil?
+        stop_items[:items].split(" ").each do |item|
         # cost = params.require(:itemprice)[item]
         last_stop_item = ItemByStop.where(plan_item_id: item.to_i).last
         plan_item = PlanItem.find(item.to_i)
@@ -43,11 +46,12 @@ class StopsController < ApplicationController
           deadline_date_for_this_item = last_stop.date + plan_item.to_do_every_x_years*365
         end
 
-        calculated_next_km_milestone = plan_item.to_do_every_x_km + @stop.mileage
-        calculated_next_date_milestone = @stop.date + plan_item.to_do_every_x_years*365
+          calculated_next_km_milestone = plan_item.to_do_every_x_km + @stop.mileage
+          calculated_next_date_milestone = @stop.date + plan_item.to_do_every_x_years*365
 
-        i = ItemByStop.new(stop_id: @stop.id, plan_item_id: item.to_i, deadline_km_for_this_item: deadline_km_for_this_item, calculated_next_km_milestone: calculated_next_km_milestone, deadline_date_for_this_item: deadline_date_for_this_item, calculated_next_date_milestone: calculated_next_date_milestone)
-        i.save
+          i = ItemByStop.new(stop_id: @stop.id, plan_item_id: item.to_i, deadline_km_for_this_item: deadline_km_for_this_item, calculated_next_km_milestone: calculated_next_km_milestone, deadline_date_for_this_item: deadline_date_for_this_item, calculated_next_date_milestone: calculated_next_date_milestone)
+          i.save
+        end
       end
 
       redirect_to car_stop_path(@car, @stop), notice: "Passage au garage créé"
