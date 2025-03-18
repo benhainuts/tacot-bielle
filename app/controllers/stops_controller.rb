@@ -5,7 +5,7 @@ class StopsController < ApplicationController
 
 
   def index
-    @stop = Stop.all
+    @stops = @car.stops
   end
 
   def show

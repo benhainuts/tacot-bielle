@@ -1,0 +1,12 @@
+<h1>index des stops</h1>
+
+
+
+<ul>
+  <% @stops.each do |stop| %>
+    <li>
+      <%=stop.date%> <%=stop.cost%>
+    </li>
+  <% end %>
+
+</ul>
