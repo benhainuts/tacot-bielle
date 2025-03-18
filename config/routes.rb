@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get "cars/:id/alerts", to: "plan_items#alerts"
   post "cars/:id/stops/new", to: "plan_items#get_item_for_creating_stop", as: :create_stop_from_alerts
   post "cars/:id", to: "plan_items#create_stop_from_plan"
-
+  get "cars/:id/plan_items_gpt", to: "cars#call_maintenance", as: :call_maintenance
 
   get "/dashboard", to: "pages#dashboard"
 end
