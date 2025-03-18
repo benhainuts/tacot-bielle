@@ -53,7 +53,7 @@
     <div class="col-3">Echeance date</div> %>
     <%if @car.plan_items.empty?%>
       <p>pas d'opération déclarée dans le plan d'entretien<p>
-      <%= link_to "créer un plan d'entretien", car_plan_items_path(@car), class: "btn btn-primary" %>
+      <%= link_to "créer un plan d'entretien", call_maintenance_path(@car), class: "btn btn-primary" %>
     <%else%>
       <ul>
         <%sorted_items = @plan_items.select { |i| i.deadline_status == 'en retard' }%>

@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update]
-  before_action :set_car, only: [:edit, :update, :show]
+  before_action :set_car, only: [:edit, :update, :show, :call_maintenance]
 
   def index
     @cars = Car.all
@@ -13,8 +13,6 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = current_user
-
-
     @car.make = @car.make.upcase()
     @car.model = @car.model.capitalize()
     # raise
@@ -43,6 +41,13 @@ class CarsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def call_maintenance
+    create_maintenance(@car)
+
+      # Logic for handling GET requests
+
   end
 
 private
