@@ -5,11 +5,24 @@
 
       <div class="horizontal-new-container">
       <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler" %>
-      <h6><strong>Mise à jour du kilométrage pour <%=@car.full_name%></strong></h6>
+      <h6><strong>Mise à jour pour <%=@car.full_name%></strong></h6>
       </div>
 
       <%= simple_form_for @car do |f| %>
+
           <%= f.input :mileage, label: "Kilomètrage", placeholder: "Entrez le kilométrage du véhicule"%>
+          <%= f.input :estimated_mileage_per_year, label: "Distance parcourue par an (KM)", placeholder: "Entrez un kilométrage estimé par an" %>
+
+          <%= f.input :photo, as: :file,
+                input_html: { data: { upload_target: "input", action: "change->upload#previewImage" }, style: "display: none;", default: },
+                label: false %>
+
+          <!-- Icône d’upload -->
+          <%= image_tag "camera.svg", class: "upload-icon", data: { action: "click->upload#selectFile", upload_target: "icon" } %>
+
+          <!-- Image de prévisualisation -->
+          <img data-upload-target="preview" class="preview-img" style="display: none;">
+        </div>
 
 
           <%= f.button :submit, class: "btn btn-primary" %>

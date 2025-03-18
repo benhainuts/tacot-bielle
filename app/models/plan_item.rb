@@ -53,11 +53,38 @@ class PlanItem < ApplicationRecord
     when days_to_go > 45 && km_to_go > car.estimated_mileage_per_year/1.5
       return "ok"
     when days_to_go < 0 || km_to_go < 0
-      return "LATE"
+      return "en retard"
     when days_to_go < 14 || km_to_go < car.estimated_mileage_per_year/24
-      return "URGENT"
+      return "urgent"
     else
-      return "TO DO"
+      return "à faire"
+    end
+  end
+
+  def deadline_status_km
+    case
+    when km_to_go > car.estimated_mileage_per_year/1.5
+      return "ok"
+    when km_to_go < 0
+      return "en retard"
+    when km_to_go < car.estimated_mileage_per_year/24
+      return "urgent"
+    else
+      return "à faire"
+    end
+  end
+
+
+  def deadline_status_date
+    case
+    when days_to_go > 45
+      return "ok"
+    when days_to_go < 0
+      return "en retard"
+    when days_to_go < 14
+      return "urgent"
+    else
+      return "à faire"
     end
   end
 
