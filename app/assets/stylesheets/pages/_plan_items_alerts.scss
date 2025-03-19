@@ -1,42 +1,57 @@
 .plan-items-alerts-top{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: $black;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-between;
+  // color: $black;
+  padding-bottom: 60px;
 }
 
-.plan-items-alerts-card-top-element{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: $black;
-}
+// .plan-items-alerts-card-top-element{
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   color: $black;
+// }
 
 
 .plan-items-alerts-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin-top: 15px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: $red;
-  margin-inline: auto;
-  padding-inline: 20px;
+  background: $red;
+  color: black;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 25px 25px 0 0;
+  height: 100vh;
+  max-width: 100%;
 }
 
 .plan-items-alerts-card-tickbox {
-  border: 3px solid rgb(182, 192, 195);
+  // border: 3px solid rgb(182, 192, 195);
   // background-color: rgb(129, 138, 141);
-  transform: scale(3);
+  position: absolute;
+  transform: scale(0);
   margin-left: 10px;
+  // &:checked {
+  //   accent-color: $gray;
+  // }
+}
 
-  &:checked {
-    accent-color: $gray;
-  }
+.plan-items-alerts-card-tickbox + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.9rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: white;
+  color: #0E121A;
+  border: 1px solid white;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
 
+.plan-items-alerts-card-tickbox:checked + label {
+  background-color: #0E121A;
+  color: white;
+  border: 1px solid black;
 }
 
 .plan-items-alerts-card-top-element {
@@ -45,10 +60,10 @@
 }
 
 .plan-items-alerts-card {
-  display: flex;
-  flex-direction: row;
+  // display: flex;
+  // flex-direction: row;
   // flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
   background-color: #f8f9fa;
   padding-left: 5px;
   padding-right: 5px;
@@ -87,4 +102,18 @@
 .plan-items-alert-card-second-column-deadlines {
   font-size: smaller;
   font-style: italic;
+}
+
+.custom-button {
+  font-size: 25px;
+  //font-weight: bold;
+  padding: 10px 20px;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+}
+
+.entretiens {
+  display: flex;
+  justify-content: center;
 }
