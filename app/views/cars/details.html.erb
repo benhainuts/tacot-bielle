@@ -1,46 +1,59 @@
-<div class="form-newcar container ">
+<div class="form-cardetails">
   <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-4">
 
-
-      <div class="return-btn">
-        <%= link_to "Retour", cars_path, class: "btn-link-annuler" %>
-      </div>
-
-
-  <h1 class = "container-title" ><%= @car.make %> <%= @car.model %></h1>
-
-  <div class = "row rounded rounded-5 container-image">
-    <% if @car.photo.present? %>
-        <%= cl_image_tag @car.photo.key, height: 300, crop: :fit %>
-    <% else %>
-        <p>No photo available</p>
-    <% end %>
-  </div>
-
-   <div>
-      <div class= "row justify-content-between" >
-        >
-          <p>Kilomètrage:</p>
+        <div class="back-cardetails-arrow-btn stroke-width="10"">
+          <%= link_to car_path@car do %>
+          <%= image_tag "back_arrow.svg" %>
+          <% end %>
         </div>
-        <div class= "container-card">
-          <%= @car.mileage %>km
+
+        <div class="cardetails">
+        <h5 style="font-size: 25px"><strong>Informations</h5>
         </div>
-        <div class = "col-4 bouton-maj">
-        <%= link_to "Mettre à jour", edit_car_path(@car), class: "btn btn-primary" %>
+
+        <div class="add-cardetails-btn">
+          <%= link_to edit_car_path(@car), data: { turbo: false } do %>
+            <%= image_tag "add.svg" %>
+          <% end %>
+        </div>
       </div>
-      </div>
-      <div class= "row justify-content-between" >
-        <p>Première mise en circulation: </p>
-        <p class = "container-card"><%= @car.date_of_first_purchase %></p>
-      </div>
-      <div class= "row justify-content-between" >
-        <p>Kilomètrage à l'année: </p>
-        <p class = "container-card"><%= @car.estimated_mileage_per_year %> km/an</p>
-      </div >
-      <div class= "row justify-content-between">
-        <p>Dernier contrôle technique: </p>
-        <p class = "container-card"><%= @car.control_date %></p>
+
+      <div style="height: 100px"></div>
+
+          <div class= "cardetails-card-info" >
+              <h3>Marque:</h3>
+              <p><%=@car.make %></p>
+          </div>
+          <div class= "cardetails-card-info" >
+              <h3>Modèle:</h3>
+              <p><%=@car.model %> <%=@car.engine %> <%=@car.horsepower %>ch</p>
+          </div>
+          <div class= "cardetails-card-info" >
+              <h3>Année:</h3>
+              <p><%=@car.date_of_first_purchase.strftime("%Y") %></p>
+          </div>
+          <div class= "cardetails-card-info" >
+              <h3>Energie:</h3>
+            <p><%= @car.fuel %></p>
+          </div>
+          <div class= "cardetails-card-info" >
+              <h3>Kilomètrage:</h3>
+            <p><%= @car.mileage %>km</p>
+          </div>
+          <div class= "cardetails-card-info" >
+              <h3>KM/an:</h3>
+            <p><%= @car.estimated_mileage_per_year %>km</p>
+          </div>
+          <div class= "cardetails-card-info" >
+              <h3>Date du dernier contrôle technique:</h3>
+            <p><%if @car.control_date.nil?%>
+              <span style="text-style: italic">N/A</span>
+            <%else%>
+              <%= @car.control_date.strftime("%d/%m/%Y") %>km
+            <%end%></p>
+          </div>
       </div>
     </div>
   </div>
+</div>

@@ -13,11 +13,11 @@
   <h2><strong><%=@plan_item.name%></strong></h2>
   <%= link_to "modifier", edit_car_plan_item_path(@car, @plan_item), class: "btn btn-primary" %>
   <div class="nomvoitureplanitemshow">
-  <strong><%=@car.full_name%></strong></h2>
+    <strong><%=@car.full_name%></strong></h2>
   </div>
     <p>
-    <strong> A faire tous les :</strong> <%=@plan_item.to_do_every_x_km%> km
-    prochaine échéance : <%=@plan_item.next_km_milestone%>
+      <strong> A faire tous les :</strong> <%=@plan_item.to_do_every_x_km%> km
+     prochaine échéance : <%=@plan_item.next_km_milestone%>
     </p>
 
     <p>

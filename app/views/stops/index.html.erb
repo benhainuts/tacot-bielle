@@ -23,9 +23,9 @@
           <ul>
             <% @stops.each do |stop| %>
               <li class="facture-card">
-                <span class="date"><%= stop.date %></span>
+                <span class="date"><%= stop.date.strftime("%d-%m-%Y") %></span>
                 <span class="icon"><%= image_tag "price_list.svg" %></span>
-                <span class="cost"><%= stop.cost %> € </span>
+                <span class="cost"><%= stop.cost.round %> € </span>
               </li>
             <% end %>
           </ul>

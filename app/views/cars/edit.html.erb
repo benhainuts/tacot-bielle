@@ -14,7 +14,7 @@
           <%= f.input :estimated_mileage_per_year, label: "Distance parcourue par an (KM)", placeholder: "Entrez un kilométrage estimé par an" %>
 
           <%= f.input :photo, as: :file,
-                input_html: { data: { upload_target: "input", action: "change->upload#previewImage" }, style: "display: none;", default: },
+                input_html: { data: { upload_target: "input", action: "change->upload#previewImage" }, style: "display: none;" },
                 label: false %>
 
           <!-- Icône d’upload -->
