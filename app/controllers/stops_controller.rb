@@ -22,8 +22,6 @@ class StopsController < ApplicationController
   end
 
   def create
-    # raise
-    # binding.pry
     @stop = @car.stops.new(stop_params)
     if @stop.save
       if Car.find(@stop.car_id).mileage < @stop.mileage

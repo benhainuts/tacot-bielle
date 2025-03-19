@@ -10,3 +10,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+input,
+textarea{
+  border-radius: .7rem !important;
+}
