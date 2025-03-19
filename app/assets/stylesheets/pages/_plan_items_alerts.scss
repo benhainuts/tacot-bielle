@@ -113,7 +113,35 @@
   top: 60px;
 }
 
+.disabled {
+  border: none;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .entretiens {
   display: flex;
   justify-content: center;
+}
+
+.nomaintenance {
+  height:500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+
+  p {
+    margin-bottom: 10px;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: lighter;
+
+  }
+
+  .btn {
+    border-radius: 5px;
+  }
+
 }

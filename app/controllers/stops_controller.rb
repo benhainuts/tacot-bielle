@@ -6,6 +6,9 @@ class StopsController < ApplicationController
 
   def index
     @stops = @car.stops
+    total_cost()
+    average_annual_cost()
+    last_year_cost()
   end
 
   def show
@@ -72,7 +75,19 @@ class StopsController < ApplicationController
   end
 
   def total_cost
-    return @car.stops.sum(:cost)
+    @total_cost = @car.stops.sum(:cost)
+  end
+
+  def last_year_cost
+    @last_year_cost = @car.stops.where("date > ?", Date.today - 1.year).sum(:cost)
+  end
+
+  def average_annual_cost
+    if Date.today - @car.last_follow_up_date < 365
+      @average_annual_cost = @car.stops.sum(:cost)
+    else
+      @average_annual_cost = @car.stops.sum(:cost)/(Date.today - @car.last_follow_up_date)
+    end
   end
 
   private
