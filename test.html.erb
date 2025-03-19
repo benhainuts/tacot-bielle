@@ -1,23 +1,24 @@
+
 <div class="dashboard">
-  <div class="add-btn">
-    <%= image_tag "add_white.svg" %>
+  <div class="back-arrow-btn">
+    <%= image_tag "back_arrow_white.svg" %>
   </div>
 
   <div class="dashboard-grid">
     <div class="two-items-per-line">
       <%= link_to cars_path, class: "dashboard-item-1 yellow" do %>
-        <%= image_tag "car.svg" %>Véhicules
+        <div class="dashboard-item-1 yellow"><%= image_tag "car.svg" %>Infos</div>
       <% end %>
       <div class="dashboard-item white"><%= image_tag "fuel_pump.svg" %></i></div>
     </div>
 
     <div class="two-items-per-line">
       <div class="dashboard-item white"><%= image_tag "maintenance.svg" %></div>
-      <div class="dashboard-item-1 red"><%= image_tag "alert.svg" %>Alertes</div>
+      <div class="dashboard-item-1 red"><%= image_tag "alert.svg" %>Entretien</div>
     </div>
 
     <div class="two-items-per-line">
-      <div class="dashboard-item-1 green"><%= image_tag "camera.svg" %>Photos</div>
+      <div class="dashboard-item-1 green"><%= image_tag "camera.svg" %>Historique</div>
       <div class="dashboard-item white"><%= image_tag "price_list.svg" %></div>
     </div>
 
@@ -27,12 +28,13 @@
     </div>
   </div>
 
-  <div class="dashboard-navbar">
-    <div class="navbar-item"><%= image_tag "home.svg" %></div>
-    <div class="navbar-item"><%= image_tag "map.svg" %></div>
-    <div class="navbar-item"><%= image_tag "calendar.svg" %></div>
-    <div class="navbar-item"><%= image_tag "options.svg" %></div>
+  <div class="dashboard-footer">
+    <%= link_to root_path, class: 'footer-item' do %>
+      <%= image_tag "home.svg" %>
+    <% end %>
+    <div class="footer-item"><%= image_tag "map.svg" %></div>
+    <div class="footer-item"><%= image_tag "calendar.svg" %></div>
+    <div class="footer-item"><%= image_tag "options.svg" %></div>
   </div>
-
 
 </div>

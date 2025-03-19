@@ -1,9 +1,19 @@
-<div class="dashboard-container">
-  <div class="d-flex align-items-center justify-content-between">
-    <h2 id="titre-blanc">Mes véhicules</h2>
-    <%= link_to new_car_path, class: "btn-ajouter-une-voiture", data: { turbo: false } do %>
-      <i class="fa-solid fa-plus"></i>
+<div class="dashboard">
+
+  <div class="back-arrow-btn">
+    <%= link_to dashboard_path do %>
+      <%= image_tag "back_arrow_white.svg" %>
     <% end %>
+  </div>
+
+  <div class="add-btn">
+    <%= link_to new_car_path, data: { turbo: false } do %>
+      <%= image_tag "add_white.svg" %>
+    <% end %>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-between">
+    <h2 >Mes véhicules</h2>
   </div>
 
   <div class="container">
@@ -21,8 +31,9 @@
                   <p>No Image Available</p>
                 <% end %>
               </div>
+
               <div class="car-infos">
-                <p><%= car.make %> - <%= car.model %> - <%= car.mileage %></p>
+                <p id="make-model"><%= car.make %> <%= car.model %></p>
               </div>
             </li>
           <% end %>
@@ -31,20 +42,13 @@
     </div>
   </div>
 
-  <div class="dashboard-footer">
-    <%= link_to root_path, class: 'footer-item' do %>
+  <div class="dashboard-navbar">
+    <%= link_to root_path, class: 'navbar-item' do %>
       <%= image_tag "home.svg" %>
     <% end %>
-    <div class="footer-item"><%= image_tag "map.svg" %></div>
-    <div class="footer-item"><%= image_tag "calendar.svg" %></div>
-    <div class="footer-item"><%= image_tag "options.svg" %></div>
+    <div class="navbar-item"><%= image_tag "map.svg" %></div>
+    <div class="navbar-item"><%= image_tag "calendar.svg" %></div>
+    <div class="navbar-item"><%= image_tag "options.svg" %></div>
   </div>
+
 </div>
-
-
-
-
-
-<%# <%= link_to do %>
-  <%# <%= image_tag "home.svg", alt: "Accueil" %>
-<%# <% end %>
