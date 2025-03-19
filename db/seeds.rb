@@ -19,13 +19,13 @@ juliette = User.create(email:"juliette@test.com", password:"juliette1905")
 sami = User.create(email:"sami@test.com", password:"sami1905")
 cedric = User.create(email:"cedric@test.com", password:"cedric1905")
 
-toyota = Car.create(make:"AUDI", model:"Q8", date_of_first_purchase:"2021-08-04", mileage:18000, estimated_mileage_per_year:15000, fuel: "Essence", engine: "1.8", last_follow_up_km:13000, last_follow_up_date:"2024-09-12",  horsepower: 180, user: benoit)
-file = File.open(Rails.root.join("app", "assets", "images", "cars_seed", "AUDI.jpg"))
+toyota = Car.create(make:"AUDI", model:"Q8", date_of_first_purchase:"2021-08-04", mileage:18000, estimated_mileage_per_year:15000, fuel: "Essence", engine: "1.8", last_follow_up_km:13000, last_follow_up_date:"2024-09-12", control_date: nil,  horsepower: 180, user: benoit)
+file = File.open(Rails.root.join("app", "assets", "images", "cars_seed", "AUDI.png"))
 toyota.photo.attach(io: file, filename: "toyota.png", content_type: "image/png")
 toyota.save
 
-citroen = Car.create(make:"FIAT", model:"500", date_of_first_purchase:"2016-04-14", mileage:85000, estimated_mileage_per_year:15000, fuel: "Essence", engine: "0.8", last_follow_up_km:83000, last_follow_up_date:"2024-12-05",  horsepower: 80, user: benoit)
-file = File.open(Rails.root.join("app", "assets", "images", "cars_seed", "FIAT.jpg"))
+citroen = Car.create(make:"FIAT", model:"500", date_of_first_purchase:"2016-04-14", mileage:85000, estimated_mileage_per_year:15000, fuel: "Essence", engine: "0.8", last_follow_up_km:83000, last_follow_up_date:"2024-12-05", control_date: "2024-04-01" , horsepower: 80, user: benoit)
+file = File.open(Rails.root.join("app", "assets", "images", "cars_seed", "FIAT.png"))
 citroen.photo.attach(io: file, filename: "citroen.png", content_type: "image/png")
 citroen.save
 
