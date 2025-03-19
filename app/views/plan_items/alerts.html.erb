@@ -1,32 +1,38 @@
-<h1>Mes entretiens</h1>
+
 
 <div class="plan-items-alerts-container">
+  <div class="plan-items-alerts-top">
+    <div class="plan-items-alerts-top-element"><</div>
+    <div class="plan-items-alerts-top-element">Mes entretiens</div>
+    <div class="plan-items-alerts-top-element">+</div>
+  </div>
 
-<form action="<%= new_car_stop_path(@car) %>" method="get">
-<ul>
-  <% @plan_items_alerts.each do |plan_item| %>
-          <li>
-            <div class="plan-items-alerts-card">
-              <div class="plan-items-alerts-first-column">
-                <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-              </div>
-              <div class="plan-items-alerts-second-column" >
-                <strong><%= plan_item.name %></strong> <br>
-                <span class="plan-items-alert-card-second-column-deadlines">avant <strong><%= plan_item.next_km_milestone %>km</strong>
-                ou le <strong><%= plan_item.next_date_milestone %></strong></span>
-              </div>
-              <%# <div class="col-3">
-                <%= link_to raw('<i class="fa-regular fa-calendar-plus" style="color: #000000;"></i>'), car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary" %>
-                <%# <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
-                <%# <%= link_to "modifier", create_stop_from_alerts_path(@car, :params), class: "btn btn-primary" %>
-                <%# <img src="../../images/notes.svg" alt=""></a> %>
-              <%# </div> %>
-            </div>
-          </li>
-  <% end %>
-</ul>
 
-<input type="submit" class="btn btn-primary">
-</form>
+  <form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false">
+  <ul>
+    <% @plan_items_alerts.each do |plan_item| %>
+            <li>
+              <div class="plan-items-alerts-card">
+                <div class="plan-items-alerts-first-column">
+                  <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                </div>
+                <div class="plan-items-alerts-second-column" >
+                  <strong><%= plan_item.name %></strong> <br>
+                  <span class="plan-items-alert-card-second-column-deadlines">avant <strong><%= plan_item.next_km_milestone %>km</strong>
+                  ou le <strong><%= plan_item.next_date_milestone %></strong></span>
+                </div>
+                <%# <div class="col-3">
+                  <%= link_to raw('<i class="fa-regular fa-calendar-plus" style="color: #000000;"></i>'), car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary" %>
+                  <%# <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                  <%# <%= link_to "modifier", create_stop_from_alerts_path(@car, :params), class: "btn btn-primary" %>
+                  <%# <img src="../../images/notes.svg" alt=""></a> %>
+                <%# </div> %>
+              </div>
+            </li>
+    <% end %>
+  </ul>
+
+  <input type="submit" class="btn btn-primary">
+  </form>
 
 </div>

@@ -18,6 +18,9 @@
           <%= f.input :mileage, label: "Kilométrage", placeholder: "Kilométrage" %>
           <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
           <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
+          <%if !params[:items].nil? %>
+            <%= f.hidden_field :items, value: @items.split(" ")%>
+          <%end%>
 
 
         <div class="ajouter-facture">
