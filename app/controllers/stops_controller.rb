@@ -54,7 +54,7 @@ class StopsController < ApplicationController
         end
       end
 
-      redirect_to car_stop_path(@car, @stop), notice: "Passage au garage créé"
+      redirect_to car_stops_path(@car), notice: "Passage au garage créé"
     else
       render :new, status: :unprocessable_entity
     end
@@ -69,6 +69,10 @@ class StopsController < ApplicationController
     else
       render car_path(@car), status: :unprocessable_entity
     end
+  end
+
+  def total_cost
+    return @car.stops.sum(:cost)
   end
 
   private

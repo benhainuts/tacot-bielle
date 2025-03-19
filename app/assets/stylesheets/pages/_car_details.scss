@@ -1,0 +1,95 @@
+.form-cardetails{
+  background: $yellow;
+  color: black;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 25px 25px 0 0;
+  height: 100%;
+  max-width: 100%;
+
+}
+
+.back-cardetails-arrow-btn {
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+.back-cardetails-arrow-btn img {
+  width: 60px;
+  height: auto;
+}
+
+.add-cardetails-btn {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+}
+.add-cardetails-btn img {
+  height: auto;
+  width: 50px;
+}
+
+.cardetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+  .cardetails-list {
+  margin-top: 90px;
+  max-width: 95%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardetails-card {
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.cardetails-card .date {
+  flex: 1;
+}
+
+.cardetails-card .icon {
+  flex-shrink: 0;
+  margin-left: 30px;
+}
+
+.cardetails-card .icon img {
+  width: 30px;
+}
+
+.cardetails-card .cost {
+  flex: 1;
+  text-align: right;
+}
+
+.cardetails-card-info {
+  margin-bottom: 20px;
+
+
+  h3 {
+    padding-left: 15px;
+    font-size: 20px;
+    padding-bottom: 0px;
+  }
+
+  p {background-color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 20px;}
+}
