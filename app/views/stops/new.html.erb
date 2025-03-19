@@ -16,8 +16,7 @@
           <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date", placeholder: "Date" %>
           <%= f.input :cost, label: "Prix", placeholder: "Prix" %>
           <%= f.input :mileage, label: "Kilométrage", placeholder: "Kilométrage" %>
-          <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
-          <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
+          <%= f.input :notes, label: "Notes", placeholder: "Notes" %>
           <%if !params[:items].nil? %>
             <%= f.hidden_field :items, value: @items.split(" ")%>
           <%end%>
