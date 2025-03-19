@@ -1,3 +1,17 @@
+.plan-items-alerts-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: $black;
+}
+
+.plan-items-alerts-card-top-element{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: $black;
+}
+
 
 .plan-items-alerts-container {
   display: flex;
@@ -14,14 +28,19 @@
 }
 
 .plan-items-alerts-card-tickbox {
-  border: 3px solid $gray;
-  background-color: rgb(129, 138, 141);
+  border: 3px solid rgb(182, 192, 195);
+  // background-color: rgb(129, 138, 141);
   transform: scale(3);
   margin-left: 10px;
 
   &:checked {
     accent-color: $gray;
   }
+
+}
+
+.plan-items-alerts-card-top-element {
+  display: flex;
 
 }
 
