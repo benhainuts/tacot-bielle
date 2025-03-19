@@ -1,0 +1,90 @@
+.plan-items-alerts-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: $black;
+}
+
+.plan-items-alerts-card-top-element{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: $black;
+}
+
+
+.plan-items-alerts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 15px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: $red;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.plan-items-alerts-card-tickbox {
+  border: 3px solid rgb(182, 192, 195);
+  // background-color: rgb(129, 138, 141);
+  transform: scale(3);
+  margin-left: 10px;
+
+  &:checked {
+    accent-color: $gray;
+  }
+
+}
+
+.plan-items-alerts-card-top-element {
+  display: flex;
+
+}
+
+.plan-items-alerts-card {
+  display: flex;
+  flex-direction: row;
+  // flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 10px;
+
+  border-radius: 10px; /* overrules rounded (6px) */
+  align-items: center;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.plan-items-alerts-first-column {
+  flex: 1;
+  flex-basis: 20%;
+  vertical-align: middle;
+  margin-right: 20px;
+  padding-left: 15px;
+}
+
+.plan-items-alerts-second-column {
+  flex: 4;
+  // width: 66.6667%;
+  flex-basis: 75%;
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 40px;
+  // margin: 0;
+  text-decoration: none;
+}
+
+.plan-items-alerts-third-col {
+  flex: 0 0 auto;
+  width: 25%;
+}
+
+.plan-items-alert-card-second-column-deadlines {
+  font-size: smaller;
+  font-style: italic;
+}

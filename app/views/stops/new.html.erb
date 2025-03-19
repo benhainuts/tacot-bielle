@@ -1,47 +1,47 @@
-<div class="global-form-stop-new">
 
 
-<div class="form-new">
+
+<div class="form-newstop">
  <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-4">
 
-      <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler" %>
-      <h5><strong>Nouveau passage au garage</h5>
-      <div class="nomvoiturenewstop">
-      <%=@car.full_name%></strong></h5>
-      </div>
+        <div class="horizontal-new-stop-container position-sticky top-0 bg-primary rounded-3">
+            <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler-new-stop" %>
+            <h5><strong>Pitstop</h5>
+            <%= simple_form_for [@car, @stop] do |f| %>
+            <%= f.button :submit, "Enregistrer", class: "btn-link-envoyer-new-stop", style: "background: none; border: none; color: inherit; cursor: pointer;" %>
+        </div>
 
 
-    <%= simple_form_for [@car, @stop] do |f| %>
-      <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date du passage", placeholder: "Entrez une date" %>
-      <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
-      <%= f.input :cost, label: "Montant de la facture", placeholder: "Entrez le montant" %>
-      <%= f.input :mileage, label: "Kilométrage au passage", placeholder: "Entrez le kilométrage" %>
-      <div>Opérations d'entretiens réalisées</div>
+          <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date", placeholder: "Date" %>
+          <%= f.input :cost, label: "Prix", placeholder: "Prix" %>
+          <%= f.input :mileage, label: "Kilométrage", placeholder: "Kilométrage" %>
+          <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
+          <%= f.input :garage, label: "Nom du garage", placeholder: "Nom du garage" %>
+          <%if !params[:items].nil? %>
+            <%= f.hidden_field :items, value: @items.split(" ")%>
+          <%end%>
 
 
-    <ul class="plan-items-list-new">
-      <% @car.plan_items.each do |item| %>
-        <li class="plan-item-new">
-          <div class="checkbox-container-new">
-            <input type="checkbox" id="<%= item.id %>" name="item[<%= item.id %>]">
-          </div>
-          <div class="item-name">
-            <%= item.name %>
-          </div>
-          <div class="price-container-new">
-            <span class="price-label-new"> Prix: </span>
-            <input type="number" name="itemprice[<%= item.id %>]">
-          </div>
-        </li>
-      <% end %>
-    </ul>
+        <div class="ajouter-facture">
+            <label for="facture-upload" class="custom-file-upload">
+                <%= f.input :photos, as: :file, input_html: { multiple: true, id: "facture-upload", style: "display: none;" } %>
+                <div class="ajouter-facture-content d-flex">
+                     <div class="ajouter-facture-img">
+                    <%= image_tag "price_list_white.svg" %>
+                    </div>
+                   <p id="p-ajout-facture">AJOUTER UNE FACTURE</p>
+                </div>
+            </label>
+        </div>
 
 
-      <%= f.button :submit, class: "btn btn-success full-width-btn" %>
-    <% end %>
+
+
+
+
+        <% end %>
+
     </div>
   </div>
-</div>
-
 </div>

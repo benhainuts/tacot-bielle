@@ -1,0 +1,176 @@
+<div class="form-newcar container ">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-4">
+
+
+      <div class="return-btn">
+        <%= link_to "Retour", cars_path, class: "btn-link-annuler" %>
+      </div>
+
+
+  <h1 class = "container-title" ><%= @car.make %> <%= @car.model %></h1>
+
+  <div class = "row rounded rounded-5 container-image">
+    <% if @car.photo.present? %>
+        <%= cl_image_tag @car.photo.key, height: 300, crop: :fit %>
+    <% else %>
+        <p>No photo available</p>
+    <% end %>
+  </div>
+
+  <div class = "row container-card">
+    <h2 data-bs-toggle="collapse" data-bs-target="#autoinfo" >Informations</h2>
+    <div class="collapse" id="autoinfo">
+      <div class= "row justify-content-between" >
+        <div class= "col-4">
+          <p>Kilomètrage:</p>
+        </div>
+        <div class= "col-4">
+          <%= @car.mileage %>km
+        </div>
+        <div class = "col-4 bouton-maj">
+        <%= link_to "Mettre à jour", edit_car_path(@car), class: "btn btn-primary" %>
+      </div>
+      </div>
+      <div class= "row justify-content-between" >
+        <p class= "col-6">Première mise en circulation: </p>
+        <p class = "col-4 bouton-maj"><%= @car.date_of_first_purchase %></p>
+      </div>
+      <div class= "row justify-content-between" >
+        <p class= "col-6">Kilomètrage à l'année: </p>
+        <p class = "col-4 bouton-maj"><%= @car.estimated_mileage_per_year %> km/an</p>
+      </div >
+      <div class= "row justify-content-between">
+        <p class= "col-6">Dernier contrôle technique: </p>
+        <p class = "col-4 bouton-maj"><%= @car.control_date %></p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class = "row container-card ">
+    <h2  data-bs-toggle="collapse" data-bs-target="#plandentretien">Prochaines échéances</h2>
+    <div class="collapse" id="plandentretien">
+    <%# <div class="col-6">Nom</div>
+    <div class="col-3">Echeance km</div>
+    <div class="col-3">Echeance date</div> %>
+    <%if @car.plan_items.empty?%>
+      <p>pas d'opération déclarée dans le plan d'entretien<p>
+      <%= link_to "créer un plan d'entretien", car_plan_items_path(@car), class: "btn btn-primary" %>
+    <%else%>
+      <ul>
+        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'LATE' }%>
+        <% sorted_items.each do |plan_item|%>
+          <li>
+            <div class="row">
+              <div class="col-8 align-middle">
+                <strong><%= plan_item.name %></strong> <br>
+                <%=plan_item.next_km_milestone%>km <br>
+                ou le <%=plan_item.next_date_milestone%>
+                status <%=plan_item.deadline_status%>
+              </div>
+              <div class="col-4">
+                <%= link_to "ajouter au calendrier", car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary"%>
+                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+            <%if plan_item != sorted_items.last%>
+              <hr>
+            <%end%>
+          </li>
+        <% end %>
+        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'URGENT' }%>
+        <% sorted_items.each do |plan_item|%>
+          <li>
+            <div class="row">
+              <div class="col-8 align-middle">
+                <strong><%= plan_item.name %></strong> <br>
+                <%=plan_item.next_km_milestone%>km <br>
+                ou le <%=plan_item.next_date_milestone%>
+                status <%=plan_item.deadline_status%>
+              </div>
+              <div class="col-4">
+                <%= link_to "ajouter au calendrier", car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary"%>
+                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+            <%if plan_item != sorted_items.last%>
+              <hr>
+            <%end%>
+          </li>
+        <% end %>
+        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'TO DO' }%>
+        <% sorted_items.each do |plan_item|%>
+          <li>
+            <div class="row">
+              <div class="col-8 align-middle">
+                <strong><%= plan_item.name %></strong> <br>
+                <%=plan_item.next_km_milestone%>km <br>
+                ou le <%=plan_item.next_date_milestone%>
+                status <%=plan_item.deadline_status%>
+              </div>
+              <div class="col-4">
+                <%= link_to "ajouter au calendrier", car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary"%>
+                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%= link_to "modifier", edit_car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+            <%if plan_item != sorted_items.last%>
+              <hr>
+            <%end%>
+          </li>
+        <% end %>
+      </ul>
+    <%end%>
+    <%= link_to "ajouter un item au plan d'entretien", new_car_plan_item_path(@car), class: "btn btn-primary"%>
+    <p data-bs-toggle="collapse" data-bs-target="#plandentretien">⋀</p>
+
+    </div>
+  </div>
+
+  <div class = "row container-card">
+    <h2 data-bs-toggle="collapse" data-bs-target="#passagesaugarage" >Passages au garage</h2>
+    <div class="collapse" id="passagesaugarage">
+
+      <%if @car.stops.nil?%>
+        <p>pas de passage déclaré</p>
+      <%else%>
+
+        <ul>
+          <%sorted_stops = @car.stops.sort { |a,b| b.date <=> a.date} %>
+          <% sorted_stops.each do |stop|%>
+            <li>
+            <div class="row">
+              <div class="col-8 align-middle">
+                <strong>Le <%= stop.date %></strong> <br>
+                à <strong><%=stop.mileage%>km <br></strong>
+                chez <strong><%=stop.garage%></strong>
+              </div>
+              <div class="col-4 text-end">
+                <strong><%= stop.cost %> €</strong> <br>
+                <%= link_to "détails", car_stop_path(@car, stop), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+            <%if stop != sorted_stops.last%>
+              <hr>
+            <%end%>
+          </li>
+          <% end %>
+        </ul>
+      <%end%>
+      <%= link_to "ajouter un passage au garage", new_car_stop_path(@car), class: "btn btn-primary"%>
+      <p data-bs-toggle="collapse" data-bs-target="#passagesaugarage">⋀</p>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</div>

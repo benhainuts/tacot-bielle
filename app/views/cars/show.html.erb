@@ -6,6 +6,7 @@
     <% end %>
   </div>
 
+
   <div class="car-title">
     <h1><%=@car.full_name%></h1>
   </div>
@@ -16,6 +17,7 @@
         <%= image_tag "car.svg" %>Infos
       <% end %>
       <div class="dashboard-item white"><%= image_tag "documents.svg" %></i></div>
+
     </div>
 
     <div class="two-items-per-line">
@@ -25,11 +27,13 @@
       <% end %>
     </div>
 
+
     <div class="two-items-per-line">
       <%= link_to cars_path, class: "dashboard-item-1 green" do %>
         <%= image_tag "history.svg" %>Historique
       <% end %>
       <div class="dashboard-item white"><%= image_tag "price_list.svg" %></div>
+
     </div>
   </div>
 

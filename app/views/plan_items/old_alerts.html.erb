@@ -1,0 +1,32 @@
+<h1>Mes entretiens</h1>
+
+<div class="container px-5">
+
+<form action="<%= new_car_stop_path(@car) %>" method="get">
+<ul>
+  <% @plan_items_alerts.each do |plan_item| %>
+          <li>
+            <div class="row bg-light pl-2 pr-1 my-5 rounded rounded-5 align-items-center justify-content-between">
+              <div class="col-1 align-middle">
+                <input type="checkbox" class="form-check-input" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+              </div>
+              <a href="<%=car_plan_item_path(@car, plan_item)%>" class="col-5 align-middle text-black-50 p-none" >
+                <strong><%= plan_item.name %></strong> <br>
+                <%= plan_item.next_km_milestone %>km <br>
+                ou le <%= plan_item.next_date_milestone %>
+              </a>
+              <div class="col-3">
+                <%= link_to raw('<i class="fa-regular fa-calendar-plus" style="color: #000000;"></i>'), car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary" %>
+                <%# <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
+                <%# <%= link_to "modifier", create_stop_from_alerts_path(@car, :params), class: "btn btn-primary" %>
+                <%# <img src="../../images/notes.svg" alt=""></a> %>
+              </div>
+            </div>
+          </li>
+  <% end %>
+</ul>
+
+<input type="submit" class="btn btn-primary">
+</form>
+
+</div>
