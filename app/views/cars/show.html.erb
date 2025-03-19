@@ -1,163 +1,49 @@
-<div class="form-newcar container ">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-8 col-lg-4">
 
-
-      <div class="return-btn">
-        <%= link_to "Retour", cars_path, class: "btn-link-annuler" %>
-      </div>
-
-
-  <h1 class = "container-title" ><%= @car.make %> <%= @car.model %></h1>
-
-  <div class = "row rounded rounded-5 container-image">
-    <% if @car.photo.present? %>
-        <%= cl_image_tag @car.photo.key, height: 300, crop: :fit %>
-    <% else %>
-        <p>No photo available</p>
+<div class="dashboard">
+  <div class="back-arrow-btn">
+    <%= link_to cars_path do %>
+      <%= image_tag "back_arrow_white.svg" %>
     <% end %>
   </div>
 
-  <div class = "row container-card">
-    <h2>Informations</h2>
-    <div id="autoinfo">
-      <div class= "row justify-content-center" >
-        <div class="align-text-center">
-          <%=@car.engine%> <%@car.horsepower%> - <%=@car.fuel%>
-        </div>
-      </div>
-      <div class= "row justify-content-between" >
-        <div class= "col-6">
-          <p>Kilomètrage:</p>
-        </div>
-        <div class= "col-6">
-          <%= @car.mileage %>km
-        </div>
-        </div>
 
-      <div class= "row justify-content-between" >
-        <p class= "col-6">Kilomètrage à l'année: </p>
-        <p class = "col-6 bouton-maj"><%= @car.estimated_mileage_per_year %> km/an</p>
-      </div >
-        <%= link_to "Mettre à jour", edit_car_path(@car), class: "btn btn-primary" %>
-      </div>
-      </div>
+  <div class="car-title">
+    <h1><%=@car.full_name%></h1>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="two-items-per-line">
+      <%= link_to cars_path, class: "dashboard-item-1 yellow" do %>
+        <%= image_tag "car.svg" %>Infos
+      <% end %>
+      <div class="dashboard-item white"><%= image_tag "documents.svg" %></i></div>
+
+    </div>
+
+    <div class="two-items-per-line">
+      <div class="dashboard-item white"><%= image_tag "camera.svg" %></div>
+      <%= link_to cars_path, class: "dashboard-item-1 red" do %>
+        <%= image_tag "maintenance.svg" %>Entretien
+      <% end %>
+    </div>
 
 
-
-  <div class = "row container-card ">
-    <h2  data-bs-toggle="collapse" data-bs-target="#plandentretien">Prochaines échéances</h2>
-    <div class="collapse" id="plandentretien">
-    <%# <div class="col-6">Nom</div>
-    <div class="col-3">Echeance km</div>
-    <div class="col-3">Echeance date</div> %>
-    <%if @car.plan_items.empty?%>
-      <p>pas d'opération déclarée dans le plan d'entretien<p>
-      <%= link_to "créer un plan d'entretien", call_maintenance_path(@car), class: "btn btn-primary" %>
-    <%else%>
-      <ul>
-        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'en retard' }%>
-        <% sorted_items.each do |plan_item|%>
-          <li>
-            <div class="row">
-              <div class="col-6 align-middle">
-                <strong><%= plan_item.name %></strong> <br>
-                <%=plan_item.deadline_status%>
-              </div>
-              <div class="col-3">
-                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
-              </div>
-                <%# <img src="../../images/notes.svg" alt=""></a> %>
-
-            </div>
-            <%if plan_item != sorted_items.last%>
-              <hr>
-            <%end%>
-          </li>
-        <% end %>
-        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'urgent' }%>
-        <% sorted_items.each do |plan_item|%>
-          <li>
-            <div class="row">
-              <div class="col-8 align-middle">
-                <strong><%= plan_item.name %></strong> <br>
-                <%=plan_item.deadline_status%>
-              </div>
-              <div class="col-4">
-                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
-
-                <%# <img src="../../images/notes.svg" alt=""></a> %>
-              </div>
-            </div>
-            <%if plan_item != sorted_items.last%>
-              <hr>
-            <%end%>
-          </li>
-        <% end %>
-        <%sorted_items = @plan_items.select { |i| i.deadline_status == 'à faire' }%>
-        <% sorted_items.each do |plan_item|%>
-          <li>
-            <div class="row">
-              <div class="col-8 align-middle">
-                <strong><%= plan_item.name %></strong> <br>
-                <%=plan_item.deadline_status%>
-              </div>
-              <div class="col-4">
-                <%= link_to "ajouter au calendrier", car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary"%>
-                <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
-
-                <%# <img src="../../images/notes.svg" alt=""></a> %>
-              </div>
-            </div>
-            <%if plan_item != sorted_items.last%>
-              <hr>
-            <%end%>
-          </li>
-        <% end %>
-      </ul>
-    <%end%>
-    <%= link_to "ajouter un item au plan d'entretien", new_car_plan_item_path(@car), class: "btn btn-primary"%>
-    <p data-bs-toggle="collapse" data-bs-target="#plandentretien">⋀</p>
+    <div class="two-items-per-line">
+      <%= link_to cars_path, class: "dashboard-item-1 green" do %>
+        <%= image_tag "history.svg" %>Historique
+      <% end %>
+      <div class="dashboard-item white"><%= image_tag "price_list.svg" %></div>
 
     </div>
   </div>
 
-  <div class = "row container-card">
-    <h2 data-bs-toggle="collapse" data-bs-target="#passagesaugarage" >Passages au garage</h2>
-    <div class="collapse" id="passagesaugarage">
-
-      <%if @car.stops.nil?%>
-        <p>pas de passage déclaré</p>
-      <%else%>
-
-        <ul>
-          <%sorted_stops = @car.stops.sort { |a,b| b.date <=> a.date} %>
-          <% sorted_stops.each do |stop|%>
-            <li>
-            <div class="row">
-              <div class="col-8 align-middle">
-                <strong>Le <%= stop.date %></strong> <br>
-                à <strong><%=stop.mileage%>km <br></strong>
-                chez <strong><%=stop.garage%></strong>
-              </div>
-              <div class="col-4 text-end">
-                <strong><%= stop.cost %> €</strong> <br>
-                <%= link_to "détails", car_stop_path(@car, stop), class: "btn btn-primary" %>
-                <%# <img src="../../images/notes.svg" alt=""></a> %>
-              </div>
-            </div>
-            <%if stop != sorted_stops.last%>
-              <hr>
-            <%end%>
-          </li>
-          <% end %>
-        </ul>
-      <%end%>
-      <p data-bs-toggle="collapse" data-bs-target="#passagesaugarage">⋀</p>
-    </div>
+  <div class="dashboard-navbar">
+    <%= link_to root_path, class: 'navbar-item' do %>
+      <%= image_tag "home.svg" %>
+    <% end %>
+    <div class="navbar-item"><%= image_tag "map.svg" %></div>
+    <div class="navbar-item"><%= image_tag "calendar.svg" %></div>
+    <div class="navbar-item"><%= image_tag "options.svg" %></div>
   </div>
 
-
-</div>
-</div>
 </div>
