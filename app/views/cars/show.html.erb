@@ -6,12 +6,13 @@
     <% end %>
   </div>
 
+  <h4 class="car-title"><%=@car.full_name%></h4>
 
-  <div class="car-title">
-    <h1><%=@car.full_name%></h1>
+  <div class="car-image">
+    <%= cl_image_tag @car.photo.key, height: 200, width: 300, crop: :fill, alt: "Image de #{@car.make} #{@car.model}" %>
   </div>
 
-  <div class="dashboard-grid">
+  <div class="buttons-grid">
     <div class="two-items-per-line">
       <%= link_to cars_path, class: "dashboard-item-1 yellow" do %>
         <%= image_tag "car.svg" %>Infos
@@ -41,7 +42,9 @@
     <%= link_to root_path, class: 'navbar-item' do %>
       <%= image_tag "home.svg" %>
     <% end %>
-    <div class="navbar-item"><%= image_tag "map.svg" %></div>
+    <%= link_to cars_path, class: 'navbar-item' do %>
+      <%= image_tag "car.svg" %>
+    <% end %>
     <div class="navbar-item"><%= image_tag "calendar.svg" %></div>
     <div class="navbar-item"><%= image_tag "options.svg" %></div>
   </div>
