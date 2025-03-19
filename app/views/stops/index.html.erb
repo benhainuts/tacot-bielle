@@ -1,12 +1,36 @@
-<h1>index des stops</h1>
+<div class="form-indexstop">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-4">
+
+        <div class="back-facture-arrow-btn">
+          <%= link_to car_path@car do %>
+          <%= image_tag "back_arrow.svg" %>
+          <% end %>
+        </div>
+
+        <div class="historique">
+        <h5><strong>Historique</h5>
+        </div>
+
+        <div class="add-facture-btn">
+          <%= link_to new_car_stop_path@car, data: { turbo: false } do %>
+            <%= image_tag "add.svg" %>
+          <% end %>
+        </div>
 
 
+      <div class="facture-list">
+          <ul>
+            <% @stops.each do |stop| %>
+              <li class="facture-card">
+                <span class="date"><%= stop.date %></span>
+                <span class="icon"><%= image_tag "price_list.svg" %></span>
+                <span class="cost"><%= stop.cost %> € </span>
+              </li>
+            <% end %>
+          </ul>
+      </div>
 
-<ul>
-  <% @stops.each do |stop| %>
-    <li>
-      <%=stop.date%> <%=stop.cost%>
-    </li>
-  <% end %>
-
-</ul>
+    </div>
+  </div>
+</div>
