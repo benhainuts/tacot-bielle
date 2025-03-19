@@ -82,7 +82,7 @@ class StopsController < ApplicationController
   end
 
   def stop_params
-    params.require(:stop).permit(:date, :garage, :cost, :mileage, photos: [])
+    params.require(:stop).permit(:date, :garage, :cost, :mileage, :notes, photos: [])
   end
 
   def stop_items

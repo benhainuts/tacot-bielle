@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :item_by_stops
   end
 
-  get "cars/:id/alerts", to: "plan_items#alerts"
+  get "cars/:id/alerts", to: "plan_items#alerts", as: :car_alerts
   # post "cars/:id/stops/new", to: "plan_items#get_item_for_creating_stop", as: :create_stop_from_alerts
   post "cars/:id", to: "plan_items#create_stop_from_plan"
   get "cars/:id/chips", to: "cars#call_maintenance", as: :call_maintenance

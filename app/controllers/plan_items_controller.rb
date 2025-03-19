@@ -49,6 +49,9 @@ class PlanItemsController < ApplicationController
 def alerts
   @car = Car.find(params[:id])
   @plan_items_alerts = @car.plan_items.select{|plan_item| ["à faire", "urgent", "en retard"].include?(plan_item.deadline_status)}
+  @plan_items_alerts_urgent = @car.plan_items.select{|plan_item| ["urgent", "en retard"].include?(plan_item.deadline_status)}
+  @plan_items_alerts_a_faire = @car.plan_items.select{|plan_item| ["à faire"].include?(plan_item.deadline_status)}
+  @plan_items_alerts_ok = @car.plan_items.select{|plan_item| ["ok"].include?(plan_item.deadline_status)}
 end
 
 
