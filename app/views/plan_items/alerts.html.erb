@@ -4,8 +4,8 @@
       <p>pas d'opération déclarée dans le plan d'entretien<p>
       <%= link_to "créer un plan d'entretien", call_maintenance_path(@car), class: "btn btn-primary" %>
   <%else%>
-        
-        
+
+
 
 <div class="plan-items-alerts-container">
 
@@ -16,8 +16,8 @@
              <%= image_tag "back_arrow.svg" %>
               <% end %>
        </div>
-                         
-                         
+
+
           <form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false">
           <input type="submit" class="btn btn-alert custom-button" value="OK">
 
@@ -48,7 +48,7 @@
 
                   <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
                   <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
-       
+
               </li>
       <% end %>
     </ul>
@@ -67,5 +67,6 @@
               </li>
       <% end %>
     </ul>
+    <% end %>
   </form>
 </div>
