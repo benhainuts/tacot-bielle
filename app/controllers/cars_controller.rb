@@ -46,7 +46,7 @@ class CarsController < ApplicationController
   def call_maintenance
     create_maintenance(@car)
     create_control(@car)
-    redirect_to car_path(@car)
+    redirect_to car_alerts_path(@car)
       # Logic for handling GET requests
   end
 
