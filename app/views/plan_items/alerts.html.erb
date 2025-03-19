@@ -1,93 +1,71 @@
 
 
-<div class="plan-items-alerts-container">
-  <div class="plan-items-alerts-top">
-    <div class="plan-items-alerts-top-element"><%= link_to "back", car_path(@car) %></div>
-    <div class="plan-items-alerts-top-element">Mes entretiens</div>
-    <div class="plan-items-alerts-top-element">+</div>
-  </div>
-
-
-  <%if @car.plan_items.empty?%>
+   <%if @car.plan_items.empty?%>
       <p>pas d'opération déclarée dans le plan d'entretien<p>
       <%= link_to "créer un plan d'entretien", call_maintenance_path(@car), class: "btn btn-primary" %>
   <%else%>
+        
+        
 
-    <form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false">
-    <h2>Avant 15 jours</h2>
+<div class="plan-items-alerts-container">
+
+
+    <div class="plan-items-alerts-top">
+          <div class="back-facture-arrow-btn">
+             <%= link_to car_path@car do %>
+             <%= image_tag "back_arrow.svg" %>
+              <% end %>
+       </div>
+                         
+                         
+          <form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false">
+          <input type="submit" class="btn btn-alert custom-button" value="OK">
+
+
+          <div class="entretiens">
+          <h5><strong>Historique</h5>
+          </div>
+    </div>
+
+
+    <p><strong>Sous 15 jours :</strong></p>
       <ul>
         <% @plan_items_alerts_urgent.each do |plan_item| %>
-                <li>
-                  <div class="plan-items-alerts-card">
-                    <div class="plan-items-alerts-first-column">
-                      <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-                    </div>
-                    <div class="plan-items-alerts-second-column" >
-                      <strong><%= plan_item.name %></strong> <br>
-                      <span class="plan-items-alert-card-second-column-deadlines">avant <strong><%= plan_item.next_km_milestone %>km</strong>
-                      ou le <strong><%= plan_item.next_date_milestone %></strong></span>
-                    </div>
-                    <%# <div class="col-3">
-                      <%= link_to raw('<i class="fa-regular fa-calendar-plus" style="color: #000000;"></i>'), car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary" %>
-                      <%# <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
-                      <%# <%= link_to "modifier", create_stop_from_alerts_path(@car, :params), class: "btn btn-primary" %>
-                      <%# <img src="../../images/notes.svg" alt=""></a> %>
-                    <%# </div> %>
-                  </div>
-                </li>
-        <% end %>
-      <ul>
-    <h2>Avant 45 jours</h2>
-      <ul>
-        <% @plan_items_alerts_a_faire.each do |plan_item| %>
-                <li>
-                  <div class="plan-items-alerts-card">
-                    <div class="plan-items-alerts-first-column">
-                      <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-                    </div>
-                    <div class="plan-items-alerts-second-column" >
-                      <strong><%= plan_item.name %></strong> <br>
-                      <span class="plan-items-alert-card-second-column-deadlines">avant <strong><%= plan_item.next_km_milestone %>km</strong>
-                      ou le <strong><%= plan_item.next_date_milestone %></strong></span>
-                    </div>
-                    <%# <div class="col-3">
-                      <%= link_to raw('<i class="fa-regular fa-calendar-plus" style="color: #000000;"></i>'), car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary" %>
-                      <%# <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
-                      <%# <%= link_to "modifier", create_stop_from_alerts_path(@car, :params), class: "btn btn-primary" %>
-                      <%# <img src="../../images/notes.svg" alt=""></a> %>
-                    <%# </div> %>
-                  </div>
-                </li>
-        <% end %>
-      </ul>
-        <h2>>45 jours</h2>
-      <ul>
-        <% @plan_items_alerts_ok.each do |plan_item| %>
-                <li>
-                  <div class="plan-items-alerts-card">
-                    <div class="plan-items-alerts-first-column">
-                      <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-                    </div>
-                    <div class="plan-items-alerts-second-column" >
-                      <strong><%= plan_item.name %></strong> <br>
-                      <span class="plan-items-alert-card-second-column-deadlines">avant <strong><%= plan_item.next_km_milestone %>km</strong>
-                      ou le <strong><%= plan_item.next_date_milestone %></strong></span>
-                    </div>
-                    <%# <div class="col-3">
-                      <%= link_to raw('<i class="fa-regular fa-calendar-plus" style="color: #000000;"></i>'), car_plan_item_path(@car, plan_item, format: :ics), class: "btn btn-primary" %>
-                      <%# <%= link_to "voir", car_plan_item_path(@car, plan_item), class: "btn btn-primary" %>
-                      <%# <%= link_to "modifier", create_stop_from_alerts_path(@car, :params), class: "btn btn-primary" %>
-                      <%# <img src="../../images/notes.svg" alt=""></a> %>
-                    <%# </div> %>
-                  </div>
-                </li>
-        <% end %>
-      </ul>
+              <li>
 
 
-    <input type="submit" class="btn btn-primary">
-    </form>
+                    <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                    <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
 
-  <% end %>
+              </li>
+      <% end %>
+    <ul>
 
+    <p><strong>Sous 30 jours :</strong></p>
+     <ul>
+       <% @plan_items_alerts_a_faire.each do |plan_item| %>
+              <li>
+
+                  <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                  <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+       
+              </li>
+      <% end %>
+    </ul>
+
+      <p><strong>Sous 60 jours :</strong></p>
+
+    <ul>
+      <% @plan_items_alerts_ok.each do |plan_item| %>
+              <li>
+
+                  <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                  <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+
+
+                </div>
+              </li>
+      <% end %>
+    </ul>
+  </form>
 </div>
