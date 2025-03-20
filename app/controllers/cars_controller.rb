@@ -3,7 +3,7 @@ class CarsController < ApplicationController
   before_action :set_car, only: [:edit, :update, :show, :call_maintenance]
 
   def index
-    @cars = Car.all
+    @cars = current_user.cars
   end
 
   def new
