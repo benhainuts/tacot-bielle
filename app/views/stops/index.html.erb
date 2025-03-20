@@ -9,7 +9,7 @@
         </div>
 
         <div class="historique">
-        <h5><strong>Historique</h5>
+          <h3>Historique</h3>
         </div>
 
         <div class="add-facture-btn">
@@ -62,7 +62,11 @@
                 </div>
 
 
-                <span class="cost"><%= stop.cost.round %> € </span>
+              <% if stop.cost.nil?%>
+                 <span class="cost">No cost</span>
+              <%else%>
+                  <span class="cost"><%= stop.cost.round %> € </span>
+              <%end%>
               </li>
             <% end %>
           </ul>

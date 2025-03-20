@@ -12,17 +12,22 @@
   position: absolute;
   top: 60px;
   left: 0;
+  font-weight: lighter;
 }
+
 .back-facture-arrow-btn img {
   width: 60px;
   height: auto;
+  font-weight: lighter;
 }
 
 .add-facture-btn {
   position: absolute;
   top: 60px;
   right: 20px;
+  margin-top: 5px;
 }
+
 .add-facture-btn img {
   height: auto;
   width: 50px;
@@ -30,7 +35,8 @@
 
 .historique {
   display: flex;
-  justify-content: center;;
+  justify-content: center;
+  margin-top: 5px;
 }
 
 .facture-list {
