@@ -1,5 +1,4 @@
 
-
 <div class="plan-items-alerts-container">
   <%#   <meta name="turbo-visit-control" content="reload"> %>
 
@@ -31,7 +30,7 @@
 
           <div class="maintenance">
             <% unless @plan_items_alerts_urgent.count == 0 %>
-              <p><strong>Sous <span style="font-size:19px">15</span> jours :</strong></p>
+              <p><strong>Sous <span style="font-size:22px">15</span> jours :</strong></p>
               <ul>
                 <% @plan_items_alerts_urgent.each do |plan_item| %>
                       <li>
@@ -43,7 +42,7 @@
             <%end%>
 
             <% unless @plan_items_alerts_a_faire.count == 0 %>
-              <p><strong>Sous <span style="font-size:19px">45</span> jours :</strong></p>
+              <p><strong>Sous <span style="font-size:22px">45</span> jours :</strong></p>
               <ul>
                 <% @plan_items_alerts_a_faire.each do |plan_item| %>
                         <li>
@@ -55,7 +54,7 @@
             <%end%>
 
             <% unless @plan_items_alerts_ok.count == 0 %>
-              <p><strong>Après <span style="font-size:19px">60</span> jours :</strong></p>
+              <p><strong>Après <span style="font-size:22px">60</span> jours :</strong></p>
 
               <ul>
                 <% @plan_items_alerts_ok.each do |plan_item| %>

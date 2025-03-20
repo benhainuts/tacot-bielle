@@ -2,16 +2,27 @@
 
 
 <div class="form-newstop">
- <div class="row justify-content-center">
-    <div class="col-12 col-sm-8 col-lg-4">
+ <div class="d-flex justify-content-between align-items-center">
 
 
-      <div class="horizontal-new-stop-container position-sticky top-0 bg-primary rounded-3">
-        <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler-new-stop" %>
-        <h3>Pitstop</h3>
+
+     <%# div class="horizontal-new-stop-container position-sticky top-0 bg-primary rounded-3" %>
+
+          <div class="new-stop-arrow-btn">
+             <%= link_to car_path@car do %>
+             <%= image_tag "back_arrow.svg" %>
+            <% end %>
+          </div>
+
+        <div class="pitstop">
+          <h5><strong>Pitstop</strong></h5>
+        </div>
+
+
         <%= simple_form_for [@car, @stop] do |f| %>
-        <%= f.button :submit, "Enregistrer", class: "btn-link-envoyer-new-stop", style: "background: none; border: none; color: inherit; cursor: pointer;" %>
-      </div>
+        <%= f.button :submit, "Enregistrer", class:"btn btn-alert custom-newstop-button", id:"ok-btn", value:"OK"  %>
+ </div>
+
 
 
       <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker"}, value: Date.today.strftime("%Y-%m-%d") }, label: "Date", placeholder: "Date"%>
@@ -40,4 +51,3 @@
 
     </div>
   </div>
-</div>
