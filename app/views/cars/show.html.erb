@@ -23,7 +23,7 @@
 
     <div class="two-items-per-line">
       <div class="dashboard-item white"><%= image_tag "camera.svg" %></div>
-      <%= link_to car_alerts_path(@car), class: "dashboard-item-1 red" do %>
+      <%= link_to car_alerts_path(@car), data: {turbo: false}, class: "dashboard-item-1 red" do %>
         <%= image_tag "maintenance.svg" %>Entretien
       <% end %>
     </div>

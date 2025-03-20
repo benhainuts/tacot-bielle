@@ -31,8 +31,12 @@
 
       </div>
       <div class="facture-list">
+        <% if @stops.count == 0%>
+          <p style="font-style: italic">pas de passage au garage enregistré</p>
+        <% else %>
           <ul>
-            <% @stops.each_with_index do |stop, i| %>
+            <%stops_classes = @stops.sort { |a, b| b.date <=> a.date }%>
+            <% stops_classes.each_with_index do |stop, i| %>
               <li class="facture-card">
                 <span class="date"><%= stop.date.strftime("%d-%m-%Y") %></span>
                 <span type="button" class="icon" data-bs-toggle="modal" data-bs-target=<%="#staticBackdrop#{i}"%>><%= image_tag "price_list.svg" %></span>
@@ -66,6 +70,7 @@
               </li>
             <% end %>
           </ul>
+          <% end %>
       </div>
 
     </div>
