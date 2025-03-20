@@ -1,6 +1,7 @@
 <div class="dashboard">
-  <div class="add-btn">
-    <%= image_tag "add_white.svg" %>
+
+  <div class="logo">
+    <%= image_tag "logo.png" %>
   </div>
 
   <div class="dashboard-grid">
@@ -22,17 +23,18 @@
     </div>
 
     <div class="two-items-per-line">
-      <div class="dashboard-item white"><%= image_tag "chat_assistance.svg" %></div>
+      <div class="dashboard-item white"><%= image_tag "map.svg" %></div>
       <div class="dashboard-item-1 yellow"><%= image_tag "notes.svg" %>Notes</div>
     </div>
   </div>
 
   <div class="dashboard-navbar">
     <div class="navbar-item"><%= image_tag "home.svg" %></div>
-    <div class="navbar-item"><%= image_tag "map.svg" %></div>
+    <%= link_to cars_path, class: 'navbar-item' do %>
+      <%= image_tag "car.svg" %>
+    <% end %>
     <div class="navbar-item"><%= image_tag "calendar.svg" %></div>
     <div class="navbar-item"><%= image_tag "options.svg" %></div>
   </div>
-
 
 </div>

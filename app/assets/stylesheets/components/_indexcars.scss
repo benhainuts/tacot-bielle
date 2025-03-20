@@ -28,21 +28,15 @@
   // position: relative;
 }
 
-h2 {
-  font-weight: bold;
-  font-size: 30px;
-  margin-bottom: 15px;
-}
-
-.container-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  font-weight: bold;
+.mes-vehicules {
+  margin-top: 25px;
+  font-size: 26px;
 }
 
 .container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 100px;
   flex-grow: 1;  // Pushes the navbar to the bottom
 }
 
@@ -67,31 +61,31 @@ h2 {
   max-width: 400px;
 }
 
+.car-image {
+  max-height: 160px;
+  margin-bottom: 10px;
+}
+
 .car-card-index img {
   max-width: 100%;
-  border-radius: 25px 25px 0px 0px;
-
-.car-infos p {
-  width: 100%;
-  font-weight: bold;
-  text-align: left;
-  margin-top: 10px;
-  }
+  border-radius: 20px;
 }
 
 #make-model {
-  width: 100%;
+  width: 280px;
   font-weight: bold;
+  font-size: 26px;
   text-align: left;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .dashboard-navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 80%;
-  max-width: 390px;
+  width: 90%;
+  max-width: 350px;
   padding: 0;
   background: white;
   border-radius: 20px;
