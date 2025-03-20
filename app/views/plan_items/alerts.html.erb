@@ -1,5 +1,9 @@
-<div class="plan-items-alerts-container">
 
+
+<div class="plan-items-alerts-container">
+  <%#   <meta name="turbo-visit-control" content="reload"> %>
+
+<%# <meta name="turbo-drive" content="false"> %>
 
     <div class="plan-items-alerts-top">
           <div class="back-facture-arrow-btn">
@@ -9,10 +13,10 @@
     </div>
 
     <div class="entretiens">
-          <h5><strong>entretien à faire</h5>
+          <h5><strong>Entretien</h5>
           </div>
 
-   <%if @car.plan_items.empty?%>
+  <%if @car.plan_items.empty?%>
       <div class="nomaintenance">
         <p>pas d'opération déclarée dans le plan d'entretien</p>
         <div class="createbtn"><%= link_to "créer mon plan d'entretien", call_maintenance_path(@car), class: "btn btn-primary" %></div>
@@ -20,47 +24,50 @@
   <%else%>
 
           <form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false">
-          <input type="submit" class="btn btn-alert custom-button" id="ok-btn" value="OK">
+            <input type="submit" class="btn btn-alert custom-button" id="ok-btn" value="OK">
 
 
-    </div>
+        </div>
 
+          <div class="maintenance">
+            <% unless @plan_items_alerts_urgent.count == 0 %>
+              <p><strong>Sous <span style="font-size:19px">15</span> jours :</strong></p>
+              <ul>
+                <% @plan_items_alerts_urgent.each do |plan_item| %>
+                      <li>
+                          <input type="checkbox" class="plan-items-alerts-card-tickbox" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                          <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+                      </li>
+                <% end %>
+              <ul>
+            <%end%>
 
-    <p><strong>Sous 15 jours :</strong></p>
-      <ul>
-        <% @plan_items_alerts_urgent.each do |plan_item| %>
-              <li>
+            <% unless @plan_items_alerts_a_faire.count == 0 %>
+              <p><strong>Sous <span style="font-size:19px">45</span> jours :</strong></p>
+              <ul>
+                <% @plan_items_alerts_a_faire.each do |plan_item| %>
+                        <li>
+                            <input type="checkbox" class="plan-items-alerts-card-tickbox" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                            <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+                        </li>
+                <% end %>
+              </ul>
+            <%end%>
 
+            <% unless @plan_items_alerts_ok.count == 0 %>
+              <p><strong>Après <span style="font-size:19px">60</span> jours :</strong></p>
 
-                    <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-                    <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+              <ul>
+                <% @plan_items_alerts_ok.each do |plan_item| %>
+                        <li>
+                            <input type="checkbox" class="plan-items-alerts-card-tickbox" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                            <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+                        </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </form>
+        </div>
+  <% end %>
 
-              </li>
-      <% end %>
-    <ul>
-
-    <p><strong>Sous 45 jours :</strong></p>
-     <ul>
-       <% @plan_items_alerts_a_faire.each do |plan_item| %>
-              <li>
-
-                  <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-                  <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
-
-              </li>
-      <% end %>
-    </ul>
-
-      <p><strong>Après 60 jours :</strong></p>
-
-    <ul>
-      <% @plan_items_alerts_ok.each do |plan_item| %>
-              <li>
-                  <input type="checkbox" class="plan-items-alerts-card-tickbox"  data-plan-item-selector-target="item"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-                  <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
-              </li>
-      <% end %>
-    </ul>
-    <% end %>
-  </form>
 </div>

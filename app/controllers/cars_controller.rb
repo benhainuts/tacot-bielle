@@ -70,6 +70,7 @@ def create_maintenance(car)
   client = OpenAI::Client.new
   chatgpt_response = client.chat(parameters: {
     model: "gpt-4o-mini",
+
     messages: [{ role: "user", content:
   "une voiture de marque #{car.make} Modele #{car.model} moteur #{car.engine} carburant #{car.fuel} puissance #{car.horsepower} de #{car.date_of_first_purchase} avec #{car.mileage} km et faisant #{car.estimated_mileage_per_year} km par an.  liste moi dans un json chaque entretien a faire, avec au minimum si applicable (vidange huile/ filtre à air / filtre carburant / filtre d'habitable / courroie de distribution / liquide de frein / liquide de refroidissement / révision), avec des intitulés courts ( 30 caracteres max) selon le constructeur avec son nom dans name: sa périodicité en km dans to_do_every_x_km: et sa periodicite en année dans to_do_every_x_years. ne renvoie que ce json, si erreur renvoie ce json vide."}]
   })

@@ -5,6 +5,7 @@
  <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-4">
 
+
       <div class="horizontal-new-stop-container position-sticky top-0 bg-primary rounded-3">
         <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler-new-stop" %>
         <h3>Pitstop</h3>
@@ -13,7 +14,7 @@
       </div>
 
 
-      <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Date", placeholder: "Date", input_html: {value: Date.today} %>
+      <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker"}, value: Date.today.strftime("%Y-%m-%d") }, label: "Date", placeholder: "Date"%>
       <%= f.input :cost, label: "Prix", placeholder: "Prix" %>
       <%= f.input :mileage, label: "Kilométrage", placeholder: "Kilométrage", input_html: {value: @car.mileage}  %>
       <%= f.input :notes, label: "Notes", placeholder: "Notes" %>
@@ -35,6 +36,7 @@
       </div>
 
       <% end %>
+
 
     </div>
   </div>
