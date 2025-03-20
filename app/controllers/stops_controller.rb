@@ -19,6 +19,7 @@ class StopsController < ApplicationController
     # raise
     @stop = @car.stops.new
     @items = params[:items]
+
     # PlanItem.find(id)
     # raise
 

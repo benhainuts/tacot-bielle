@@ -8,8 +8,8 @@ export default class extends Controller {
     this.activate()
   }
 
-  activate(event) {
-    event.preventDefault()
+  activate() {
+    // event.preventDefault()
     const isAnyChecked = this.checkboxTargets.some(checkbox => checkbox.checked)
     this.buttonTarget.disabled = !isAnyChecked
     console.log(isAnyChecked)
