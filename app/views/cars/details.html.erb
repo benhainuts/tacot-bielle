@@ -2,14 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-4">
 
-        <div class="back-cardetails-arrow-btn stroke-width="10"">
+        <div class="back-arrow-black-btn">
           <%= link_to car_path@car do %>
-          <%= image_tag "back_arrow.svg" %>
+            <%= image_tag "back_arrow.svg" %>
           <% end %>
         </div>
 
         <div class="cardetails">
-        <h5 style="font-size: 25px"><strong>Informations</h5>
+          <h3>Informations</h3>
         </div>
 
         <div class="add-cardetails-btn">
@@ -22,35 +22,41 @@
       <div style="height: 100px"></div>
 
           <div class= "cardetails-card-info" >
-              <h3>Marque:</h3>
-              <p><%=@car.make %></p>
+            <h3>Marque:</h3>
+            <p><%=@car.make %></p>
           </div>
+
           <div class= "cardetails-card-info" >
-              <h3>Modèle:</h3>
-              <p><%=@car.model %> <%=@car.engine %> <%=@car.horsepower %>ch</p>
+            <h3>Modèle:</h3>
+            <p><%=@car.model %> <%=@car.engine %> <%=@car.horsepower %>ch</p>
           </div>
+
           <div class= "cardetails-card-info" >
-              <h3>Année:</h3>
-              <p><%=@car.date_of_first_purchase.strftime("%Y") %></p>
+            <h3>Année:</h3>
+            <p><%=@car.date_of_first_purchase.strftime("%Y") %></p>
           </div>
+
           <div class= "cardetails-card-info" >
-              <h3>Energie:</h3>
+            <h3>Energie:</h3>
             <p><%= @car.fuel %></p>
           </div>
+
           <div class= "cardetails-card-info" >
-              <h3>Kilomètrage:</h3>
+            <h3>Kilomètrage:</h3>
             <p><%= @car.mileage %>km</p>
           </div>
+
           <div class= "cardetails-card-info" >
-              <h3>KM/an:</h3>
+            <h3>Kilométrage annuel prévu:</h3>
             <p><%= @car.estimated_mileage_per_year %>km</p>
           </div>
+
           <div class= "cardetails-card-info" >
-              <h3>Date du dernier contrôle technique:</h3>
+            <h3>Dernier contrôle technique:</h3>
             <p><%if @car.control_date.nil?%>
               <span style="text-style: italic">N/A</span>
             <%else%>
-              <%= @car.control_date.strftime("%d/%m/%Y") %>km
+              <%= @car.control_date.strftime("%d/%m/%Y") %>
             <%end%></p>
           </div>
       </div>

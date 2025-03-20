@@ -5,41 +5,38 @@
  <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-4">
 
-        <div class="horizontal-new-stop-container position-sticky top-0 bg-primary rounded-3">
-            <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler-new-stop" %>
-            <h5><strong>Pitstop</h5>
-            <%= simple_form_for [@car, @stop] do |f| %>
-            <%= f.button :submit, "Enregistrer", class: "btn-link-envoyer-new-stop", style: "background: none; border: none; color: inherit; cursor: pointer;" %>
-        </div>
+
+      <div class="horizontal-new-stop-container position-sticky top-0 bg-primary rounded-3">
+        <%= link_to "Annuler", car_path(@car), class: "btn-link-annuler-new-stop" %>
+        <h3>Pitstop</h3>
+        <%= simple_form_for [@car, @stop] do |f| %>
+        <%= f.button :submit, "Enregistrer", class: "btn-link-envoyer-new-stop", style: "background: none; border: none; color: inherit; cursor: pointer;" %>
+      </div>
 
 
-          <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker"}, value: Date.today.strftime("%Y-%m-%d") }, label: "Date", placeholder: "Date"%>
-          <%= f.input :cost, label: "Prix", placeholder: "Prix" %>
-          <%= f.input :mileage, label: "Kilométrage", placeholder: "Kilométrage", input_html: {value: @car.mileage}  %>
-          <%= f.input :notes, label: "Notes", placeholder: "Notes" %>
-          <%if !params[:items].nil? %>
-            <%= f.hidden_field :items, value: @items.split(" ")%>
-          <%end%>
+      <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker"}, value: Date.today.strftime("%Y-%m-%d") }, label: "Date", placeholder: "Date"%>
+      <%= f.input :cost, label: "Prix", placeholder: "Prix" %>
+      <%= f.input :mileage, label: "Kilométrage", placeholder: "Kilométrage", input_html: {value: @car.mileage}  %>
+      <%= f.input :notes, label: "Notes", placeholder: "Notes" %>
+      <%if !params[:items].nil? %>
+        <%= f.hidden_field :items, value: @items.split(" ")%>
+      <%end%>
 
 
-        <div class="ajouter-facture">
-            <label for="facture-upload" class="custom-file-upload">
-                <%= f.input :photos, as: :file, input_html: { multiple: true, id: "facture-upload", style: "display: none;" } %>
-                <div class="ajouter-facture-content d-flex">
-                     <div class="ajouter-facture-img">
-                    <%= image_tag "price_list_white.svg" %>
-                    </div>
-                   <p id="p-ajout-facture">AJOUTER UNE FACTURE</p>
-                </div>
-            </label>
-        </div>
+      <div class="ajouter-facture">
+          <label for="facture-upload" class="custom-file-upload">
+              <%= f.input :photos, as: :file, input_html: { multiple: true, id: "facture-upload", style: "display: none;" } %>
+              <div class="ajouter-facture-content d-flex">
+                    <div class="ajouter-facture-img">
+                  <%= image_tag "price_list_white.svg" %>
+                  </div>
+                  <p id="p-ajout-facture">AJOUTER UNE FACTURE</p>
+              </div>
+          </label>
+      </div>
 
+      <% end %>
 
-
-
-
-
-        <% end %>
 
     </div>
   </div>
