@@ -9,7 +9,12 @@
       <%= link_to cars_path, class: "dashboard-item-1 yellow" do %>
         <%= image_tag "car.svg" %>Véhicules
       <% end %>
-      <div class="dashboard-item white"><%= image_tag "fuel_pump.svg" %></i></div>
+
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, class: "dashboard-item white" , data: {turbo_method: :delete}  do%>
+        <%= image_tag "logout.svg" %>
+        <% end %>
+      <% end %>
     </div>
 
     <div class="two-items-per-line">
