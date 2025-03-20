@@ -19,8 +19,8 @@
       </div>
   <%else%>
 
-          <form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false">
-          <input type="submit" class="btn btn-alert custom-button" id="ok-btn" value="OK">
+          <form action="<%= new_car_stop_path(@car) %>" method="get" data-turbo="false" data-controller="activate-ok-button">
+          <input type="submit" class="btn btn-alert custom-button" data-activate-ok-button-target="button"  id="ok-btn" value="OK">
 
 
     </div>
@@ -32,7 +32,7 @@
               <li>
 
 
-                    <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                    <input type="checkbox" class="plan-items-alerts-card-tickbox" data-activate-ok-button-target="checkbox" data-action="click->activate-ok-button#activate" id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
                     <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
 
               </li>
@@ -44,8 +44,8 @@
        <% @plan_items_alerts_a_faire.each do |plan_item| %>
               <li>
 
-                  <input type="checkbox" class="plan-items-alerts-card-tickbox" data-plan-item-selector-target="item"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
-                  <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+                  <input type="checkbox" class="plan-items-alerts-card-tickbox" data-activate-ok-button-target="checkbox" data-activate-ok-button-action="change->activate-ok-button#activate"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+                  <label for="<%= plan_item.id %>"> <%= plan_item.name %></strong></label>
 
               </li>
       <% end %>
@@ -56,8 +56,12 @@
     <ul>
       <% @plan_items_alerts_ok.each do |plan_item| %>
               <li>
-                  <input type="checkbox" class="plan-items-alerts-card-tickbox"  data-plan-item-selector-target="item"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
+
+                  <input type="checkbox" class="plan-items-alerts-card-tickbox" data-activate-ok-button-target="checkbox" data-action="click->activate-ok-button#activate"  id="<%= plan_item.id %>" name="items[]" value="<%= plan_item.id %>">
                   <label for="<%= plan_item.id %>"> <strong><%= plan_item.name %></strong></label>
+
+
+
               </li>
       <% end %>
     </ul>

@@ -27,6 +27,12 @@
   </div>
 </div>
 
+<%unless @stop.photos.count == 0%>
+  <%@stop.photos.each do |photo|%>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, alt: "facture" %>
+  <%end%>
+<%end%>
+
 <h2>Opération d'entretien réalisées</h2>
 
 <div class="row">

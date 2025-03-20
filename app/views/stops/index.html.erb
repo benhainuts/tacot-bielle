@@ -18,13 +18,50 @@
           <% end %>
         </div>
 
+      <%# <div class="historique-chiffres"> %>
+      <%# <h3>Coût total</h3> %>
+      <%# <p><%=@total_cost%>
+      <%# </p> %>
+      <%# <h3>Coût l'an dernier</h3> %>
+      <%# <p><%=@last_year_cost%>
+      <%# </p> %>
+      <%# <h3>Cout annuel moyen</h3> %>
+      <%# <p><%@average_annual_cost%>
+      <%# </p> %>
 
+      </div>
       <div class="facture-list">
           <ul>
-            <% @stops.each do |stop| %>
+            <% @stops.each_with_index do |stop, i| %>
               <li class="facture-card">
                 <span class="date"><%= stop.date.strftime("%d-%m-%Y") %></span>
-                <span class="icon"><%= image_tag "price_list.svg" %></span>
+                <span type="button" class="icon" data-bs-toggle="modal" data-bs-target=<%="#staticBackdrop#{i}"%>><%= image_tag "price_list.svg" %></span>
+
+                <!-- Modal -->
+                <div class="modal fade" id=<%="staticBackdrop#{i}"%> data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby=<%"staticBackdrop#{i}Label"%> aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id=<%="staticBackdrop#{i}Label"%>>Facture n°<%=stop.id%></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <% if stop.photos.count() == 0 %>
+                            <p style="font-style: italic">pas de facture enregistrée</p>
+                          <% else %>
+                              <%stop.photos.each do |photo|%>
+                              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, alt: "facture" %>
+                            <%end%>
+                          <% end %>
+                      </div>
+                      <div class="modal-footer">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
                 <span class="cost"><%= stop.cost.round %> € </span>
               </li>
             <% end %>
