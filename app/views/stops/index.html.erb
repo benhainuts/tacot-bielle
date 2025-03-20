@@ -43,7 +43,7 @@
 
                 <!-- Modal -->
                 <div class="modal fade" id=<%="staticBackdrop#{i}"%> data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby=<%"staticBackdrop#{i}Label"%> aria-hidden="true">
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h1 class="modal-title fs-5" id=<%="staticBackdrop#{i}Label"%>>Facture n°<%=stop.id%></h1>
@@ -54,7 +54,7 @@
                             <p style="font-style: italic">pas de facture enregistrée</p>
                           <% else %>
                               <%stop.photos.each do |photo|%>
-                              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, alt: "facture" %>
+                              <%= cl_image_tag photo.key, height: 320, width: 350, crop: :fill, alt: "facture" %>
                             <%end%>
                           <% end %>
                       </div>

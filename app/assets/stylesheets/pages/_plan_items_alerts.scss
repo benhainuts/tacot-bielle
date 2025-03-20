@@ -20,7 +20,7 @@
   padding: 20px 20px;
   margin-top: 50px;
   border-radius: 25px 25px 0 0;
-  height: 100vh;
+  height: 100%;
   max-width: 100%;
 }
 
@@ -38,14 +38,14 @@
 .plan-items-alerts-card-tickbox + label {
   cursor: pointer;
   display: inline-block;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   border-radius: 50rem;
-  padding: 0.1rem 0.5rem;
+  padding: 0.2rem 0.6rem;
   background-color: white;
   color: #0E121A;
   border: 1px solid white;
   margin-right: 0.6rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
 }
 
 .plan-items-alerts-card-tickbox:checked + label {
@@ -111,6 +111,7 @@
   position: absolute;
   right: 20px;
   top: 60px;
+
 }
 
 .disabled {
@@ -135,7 +136,7 @@
   p {
     margin-bottom: 10px;
     font-style: italic;
-    font-size: 16px;
+    font-size: 19px;
     font-weight: lighter;
 
   }
