@@ -8,8 +8,7 @@ class Car < ApplicationRecord
 
   ENERGIE = %w[Essence Diesel Hybride Hybride-diesel Electrique Hydrogene GPL].freeze
 
-  validates :model, presence: true, uniqueness: { scope: [:make, :date_of_first_purchase, :user],
-   message: "votre voiture est déjà déclarée" }
+  validates :model, presence: true
   validates :make, presence: true
   validates :mileage, presence: true
   validates :date_of_first_purchase, presence: true
